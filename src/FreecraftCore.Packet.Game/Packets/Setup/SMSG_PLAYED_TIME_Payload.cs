@@ -10,7 +10,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_PLAYED_TIME)]
-	public sealed class SMSG_PLAYED_TIME_Payload : GamePacketPayload
+	public sealed partial class SMSG_PLAYED_TIME_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// The total play time for the character.
@@ -33,6 +33,7 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SMSG_PLAYED_TIME_Payload(uint totalPlayTime, uint playtimeAtLevel)
+			: this()
 		{
 			//TODO: Assert played time
 			TotalPlayTime = totalPlayTime;
@@ -43,6 +44,7 @@ namespace FreecraftCore
 		/// Serializer ctor.
 		/// </summary>
 		public SMSG_PLAYED_TIME_Payload()
+			: base(NetworkOperationCode.SMSG_PLAYED_TIME)
 		{
 			
 		}

@@ -31,16 +31,22 @@ namespace FreecraftCore
 		//TODO: Does this work for 0 length blocks?
 		private async Task<Dictionary<uint, string>> ReadDBCStringBlock(DBCHeader header)
 		{
-			Dictionary<uint, string> stringMap = new Dictionary<uint, string>(1000);
 			DBCStream.Position = header.StartStringPosition;
 			byte[] bytes = new byte[DBCStream.Length - DBCStream.Position];
 
 			await ReadBytesIntoArrayFromStream(bytes);
-			DefaultStreamReaderStrategyAsync stringReader = new DefaultStreamReaderStrategyAsync(bytes);
+
+			return ReadStringEntries(bytes);
+		}
+
+		private Dictionary<uint, string> ReadStringEntries(byte[] bytes)
+		{
+			Dictionary<uint, string> stringMap = new Dictionary<uint, string>(1000);
+			int offset = 0;
 
 			for(int currentOffset = 0; currentOffset < bytes.Length;)
 			{
-				string readString = (await Serializer.DeserializeAsync<StringDBC>(stringReader)).StringValue;
+				string readString = Serializer.Read<StringDBC>(new Span<byte>(bytes), ref offset).StringValue;
 
 				stringMap.Add((uint)currentOffset, readString);
 

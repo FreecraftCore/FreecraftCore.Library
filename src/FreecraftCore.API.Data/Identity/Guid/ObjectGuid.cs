@@ -31,9 +31,9 @@ namespace FreecraftCore
 			RawGuidValue = guidValue;
 		}
 
-		protected ObjectGuid()
+		public ObjectGuid()
 		{
-			//Serializer ctor
+			RawGuidValue = 0;
 		}
 
 		/// <summary>

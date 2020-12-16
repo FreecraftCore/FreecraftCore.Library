@@ -1,0 +1,21 @@
+System.InvalidOperationException: Type: GamePacketPayload encountered compilation failure. Reason: System.NotSupportedException: TODO: Implement support for non-int polymorphic registering.
+   at FreecraftCore.Serializer.PolymorphicSerializerImplementationCompilationUnitEmitter.<BuildSwitchStatements>d__8.MoveNext()
+   at Microsoft.CodeAnalysis.SyntaxList`1.CreateNode(IEnumerable`1 nodes)
+   at Microsoft.CodeAnalysis.SyntaxList`1..ctor(IEnumerable`1 nodes)
+   at Microsoft.CodeAnalysis.CSharp.SyntaxFactory.List[TNode](IEnumerable`1 nodes)
+   at FreecraftCore.Serializer.PolymorphicSerializerImplementationCompilationUnitEmitter.CreateSerializerImplementationNamespaceMember()
+   at FreecraftCore.Serializer.BaseSerializerImplementationCompilationUnitEmitter.CreateMembers()
+   at FreecraftCore.Serializer.BaseSerializerImplementationCompilationUnitEmitter.CreateUnit()
+   at FreecraftCore.Serializer.SerializerSourceEmitter.WriteSerializerStrategyClass(INamedTypeSymbol typeSymbol) ---> System.NotSupportedException: TODO: Implement support for non-int polymorphic registering.
+   at FreecraftCore.Serializer.PolymorphicSerializerImplementationCompilationUnitEmitter.<BuildSwitchStatements>d__8.MoveNext()
+   at Microsoft.CodeAnalysis.SyntaxList`1.CreateNode(IEnumerable`1 nodes)
+   at Microsoft.CodeAnalysis.SyntaxList`1..ctor(IEnumerable`1 nodes)
+   at Microsoft.CodeAnalysis.CSharp.SyntaxFactory.List[TNode](IEnumerable`1 nodes)
+   at FreecraftCore.Serializer.PolymorphicSerializerImplementationCompilationUnitEmitter.CreateSerializerImplementationNamespaceMember()
+   at FreecraftCore.Serializer.BaseSerializerImplementationCompilationUnitEmitter.CreateMembers()
+   at FreecraftCore.Serializer.BaseSerializerImplementationCompilationUnitEmitter.CreateUnit()
+   at FreecraftCore.Serializer.SerializerSourceEmitter.WriteSerializerStrategyClass(INamedTypeSymbol typeSymbol)
+   --- End of inner exception stack trace ---
+   at FreecraftCore.Serializer.SerializerSourceEmitter.WriteSerializerStrategyClass(INamedTypeSymbol typeSymbol)
+   at FreecraftCore.Serializer.SerializerSourceEmitter.Generate()
+   at FreecraftCore.Serializer.WireTypeSerializationSourceGenerator.Execute(GeneratorExecutionContext context)

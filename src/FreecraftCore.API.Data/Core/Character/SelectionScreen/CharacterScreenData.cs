@@ -77,7 +77,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected CharacterScreenData()
+		public CharacterScreenData()
 		{
 			
 		}

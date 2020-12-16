@@ -23,7 +23,7 @@ namespace FreecraftCore
 			AmmoInventoryType = ammoInventoryType;
 		}
 
-		protected AmmoInfo()
+		public AmmoInfo()
 		{
 			
 		}

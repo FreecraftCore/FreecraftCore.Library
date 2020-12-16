@@ -36,7 +36,7 @@ namespace FreecraftCore
 			CategoryCooldown = categoryCooldown;
 		}
 
-		protected InitialSpellCooldown()
+		public InitialSpellCooldown()
 		{
 
 		}

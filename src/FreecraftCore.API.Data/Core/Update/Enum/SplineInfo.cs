@@ -73,7 +73,7 @@ namespace FreecraftCore
 		/// Length prefixed (int32) collection of waypoints
 		/// for the spline.
 		/// </summary>
-		[SendSize(SendSizeAttribute.SizeType.Int32)]
+		[SendSize(PrimitiveSizeType.Int32)]
 		[WireMember(12)]
 		public Vector3<float>[] WayPoints { get; internal set; }
 
@@ -110,7 +110,7 @@ namespace FreecraftCore
 			SplineEndpoint = splineEndpoint;
 		}
 
-		protected SplineInfo()
+		public SplineInfo()
 		{
 			
 		}

@@ -43,12 +43,12 @@ namespace FreecraftCore
 		//Targets are sent byte prefixed
 		//Both a miss and hit block
 		[Optional(nameof(HasHitInformation))]
-		[SendSize(SendSizeAttribute.SizeType.Byte)]
+		[SendSize(PrimitiveSizeType.Byte)]
 		[WireMember(7)]
 		public ObjectGuid[] HitTargets { get; internal set; }
 
 		[Optional(nameof(HasHitInformation))]
-		[SendSize(SendSizeAttribute.SizeType.Byte)]
+		[SendSize(PrimitiveSizeType.Byte)]
 		[WireMember(8)]
 		public SpellMissInfo[] SpellMisses { get; internal set; }
 
@@ -67,7 +67,7 @@ namespace FreecraftCore
 
 		public bool HasVisualChainData => CastFlags.HasFlag(SpellCastFlag.CAST_FLAG_VISUAL_CHAIN);
 
-		private bool HasTargetUnknownByte => TargetInfo != null && TargetInfo.HasTransportDestinationLocation;
+		public bool HasTargetUnknownByte => TargetInfo != null && TargetInfo.HasTransportDestinationLocation;
 
 		[Optional(nameof(HasPowerInformation))]
 		[WireMember(10)]
@@ -110,7 +110,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal SpellCastData()
+		public SpellCastData()
 		{
 			
 		}

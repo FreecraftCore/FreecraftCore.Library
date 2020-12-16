@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.MSG_MOVE_TELEPORT)]
-	public sealed class MSG_MOVE_TELEPORT_Payload : GamePacketPayload, IPlayerMovementPayload<MovementInfo, MovementFlag, PackedGuid>
+	public sealed partial class MSG_MOVE_TELEPORT_Payload : GamePacketPayload, IPlayerMovementPayload<MovementInfo, MovementFlag, PackedGuid>
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
@@ -22,6 +22,7 @@ namespace FreecraftCore
 		public MovementInfo MoveInfo { get; internal set; }
 
 		public MSG_MOVE_TELEPORT_Payload([NotNull] PackedGuid movementGuid, int sequenceCounter, [NotNull] MovementInfo moveInfo)
+			: this()
 		{
 			MovementGuid = movementGuid ?? throw new ArgumentNullException(nameof(movementGuid));
 			MoveInfo = moveInfo ?? throw new ArgumentNullException(nameof(moveInfo));
@@ -29,7 +30,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal MSG_MOVE_TELEPORT_Payload()
+		public MSG_MOVE_TELEPORT_Payload()
+			: base(NetworkOperationCode.MSG_MOVE_TELEPORT)
 		{
 
 		}

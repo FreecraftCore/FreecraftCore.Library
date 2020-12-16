@@ -12,7 +12,7 @@ namespace FreecraftCore
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_AUTH_CHALLENGE)] //the packet the worldserver first sends
 	[ProtocolGrouping(ProtocolCode.Authentication)] //Though this isn't part of the actual authserver stuff it's still auth.
-	public class SessionAuthChallengeEvent : GamePacketPayload
+	public partial class SessionAuthChallengeEvent : GamePacketPayload
 	{
 		//Trinitycore always sends 1
 		//Not sure what this is
@@ -29,11 +29,13 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SessionAuthChallengeEvent([NotNull] SessionAuthChallengeEventData eventData)
+			: this()
 		{
 			EventData = eventData ?? throw new ArgumentNullException(nameof(eventData));
 		}
 
 		public SessionAuthChallengeEvent()
+			: base(NetworkOperationCode.SMSG_AUTH_CHALLENGE)
 		{
 			//TODO: If we ever make a server we'll need a real ctor for this packet.
 		}

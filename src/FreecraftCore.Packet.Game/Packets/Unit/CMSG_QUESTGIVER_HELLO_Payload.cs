@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_QUESTGIVER_HELLO)]
-	public sealed class CMSG_QUESTGIVER_HELLO_Payload : GamePacketPayload
+	public sealed partial class CMSG_QUESTGIVER_HELLO_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// The quest giver <see cref="ObjectGuid"/>.
@@ -20,6 +20,7 @@ namespace FreecraftCore
 		public ObjectGuid Target { get; internal set; }
 
 		public CMSG_QUESTGIVER_HELLO_Payload([NotNull] ObjectGuid target)
+			: this()
 		{
 			Target = target ?? throw new ArgumentNullException(nameof(target));
 		}
@@ -27,7 +28,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal CMSG_QUESTGIVER_HELLO_Payload()
+		public CMSG_QUESTGIVER_HELLO_Payload()
+			: base(NetworkOperationCode.CMSG_QUESTGIVER_HELLO)
 		{
 
 		}

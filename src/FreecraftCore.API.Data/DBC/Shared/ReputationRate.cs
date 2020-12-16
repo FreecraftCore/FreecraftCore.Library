@@ -34,7 +34,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected ReputationRate()
+		public ReputationRate()
 		{
 			
 		}

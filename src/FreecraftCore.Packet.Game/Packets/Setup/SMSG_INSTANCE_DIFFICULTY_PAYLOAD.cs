@@ -13,7 +13,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_INSTANCE_DIFFICULTY)]
-    public sealed class SMSG_INSTANCE_DIFFICULTY_PAYLOAD : GamePacketPayload
+	public sealed partial class SMSG_INSTANCE_DIFFICULTY_PAYLOAD : GamePacketPayload
 	{
 		//TODO: Refactory and extract
 		//From Trinitycore
@@ -48,8 +48,9 @@ namespace FreecraftCore
 		/// (For testing purposes. Don't call in prod)
 		/// </summary>
 		public SMSG_INSTANCE_DIFFICULTY_PAYLOAD()
+			: base(NetworkOperationCode.SMSG_INSTANCE_DIFFICULTY)
 		{
 			
 		}
-    }
+	}
 }

@@ -21,7 +21,7 @@ namespace FreecraftCore
 			VehicleOrientation = vehicleOrientation;
 		}
 
-		protected VehicleMovementInfo()
+		public VehicleMovementInfo()
 		{
 			
 		}

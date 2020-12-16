@@ -37,7 +37,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected Flags96()
+		public Flags96()
 		{
 			
 		}

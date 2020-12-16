@@ -8,17 +8,19 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_SPELL_START)]
-	public sealed class SMSG_SPELL_START_Payload : GamePacketPayload
+	public sealed partial class SMSG_SPELL_START_Payload : GamePacketPayload
 	{
 		[WireMember(1)]
 		public StartSpellCastData CastData { get; internal set; }
 
 		public SMSG_SPELL_START_Payload([NotNull] StartSpellCastData castData)
+			: this()
 		{
 			CastData = castData ?? throw new ArgumentNullException(nameof(castData));
 		}
 
-		internal SMSG_SPELL_START_Payload()
+		public SMSG_SPELL_START_Payload()
+			: base(NetworkOperationCode.SMSG_SPELL_START)
 		{
 			
 		}

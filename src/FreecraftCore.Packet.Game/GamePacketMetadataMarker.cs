@@ -73,7 +73,7 @@ namespace FreecraftCore
 			ConstructorInfo readToEndAttributeCtor = typeof(ReadToEndAttribute).GetTypeInfo().DeclaredConstructors.First();
 			ConstructorInfo wireMemberAttributeCtor = typeof(WireMemberAttribute).GetTypeInfo().DeclaredConstructors.First(c => c.GetParameters().Length > 0);
 
-			object[] wireDataContractAttribute = new object[3] { WireDataContractAttribute.KeyType.None, InformationHandlingFlags.Default, false };
+			object[] wireDataContractAttribute = new object[0] { };
 			CustomAttributeBuilder wireDataContractAttributeBuilder = new CustomAttributeBuilder(wireDataContractAttributeCtor, wireDataContractAttribute);
 			CustomAttributeBuilder readToEndAttributeBuilder = new CustomAttributeBuilder(readToEndAttributeCtor, new object[0]);
 			CustomAttributeBuilder wireMemberAttributeBuilder = new CustomAttributeBuilder(wireMemberAttributeCtor, new object[1] {1});

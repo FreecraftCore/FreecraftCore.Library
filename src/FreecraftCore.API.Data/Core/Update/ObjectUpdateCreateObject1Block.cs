@@ -7,7 +7,7 @@ namespace FreecraftCore
 	/// The update block involved with object creation.
 	/// </summary>
 	[WireDataContract]
-	public sealed class ObjectUpdateCreateObject1Block : ObjectUpdateBlock, IObjectCreationBlock
+	public sealed partial class ObjectUpdateCreateObject1Block : ObjectUpdateBlock, IObjectCreationBlock
 	{
 		/// <summary>
 		/// The creation data.
@@ -27,7 +27,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected ObjectUpdateCreateObject1Block()
+		public ObjectUpdateCreateObject1Block()
 		{
 			
 		}

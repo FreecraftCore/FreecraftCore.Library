@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -12,7 +12,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_QUESTGIVER_QUEST_LIST)]
-	public sealed class SMSG_QUESTGIVER_QUEST_LIST_Payload : GamePacketPayload
+	public sealed partial class SMSG_QUESTGIVER_QUEST_LIST_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// The GUID of the quest giver.
@@ -29,7 +29,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// The quest entries for the quest list.
 		/// </summary>
-		[SendSize(SendSizeAttribute.SizeType.Byte)]
+		[SendSize(PrimitiveSizeType.Byte)]
 		[WireMember(3)]
 		internal QuestGossipEntry[] _Entries { get; set; }
 
@@ -37,6 +37,7 @@ namespace FreecraftCore
 		public IEnumerable<QuestGossipEntry> Entries => _Entries;
 
 		public SMSG_QUESTGIVER_QUEST_LIST_Payload([NotNull] ObjectGuid questGiver, [NotNull] QuestGreeting greeting, [NotNull] QuestGossipEntry[] entries)
+			: this()
 		{
 			QuestGiver = questGiver ?? throw new ArgumentNullException(nameof(questGiver));
 			Greeting = greeting ?? throw new ArgumentNullException(nameof(greeting));
@@ -46,7 +47,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal SMSG_QUESTGIVER_QUEST_LIST_Payload()
+		public SMSG_QUESTGIVER_QUEST_LIST_Payload()
+			: base(NetworkOperationCode.SMSG_QUESTGIVER_QUEST_LIST)
 		{
 
 		}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_QUESTGIVER_QUEST_DETAILS)]
-	public sealed class SMSG_QUESTGIVER_QUEST_DETAILS_Payload : GamePacketPayload
+	public sealed partial class SMSG_QUESTGIVER_QUEST_DETAILS_Payload : GamePacketPayload
 	{
 		//This is not a complete/full implementation
 		//I have decided to pull down quest data over HTTP instead
@@ -38,6 +38,7 @@ namespace FreecraftCore
 		//implementations we pull them down over HTTP instead.
 
 		public SMSG_QUESTGIVER_QUEST_DETAILS_Payload([NotNull] ObjectGuid questGiver, [NotNull] ObjectGuid optionalQuestSharer, int questId)
+			: this()
 		{
 			QuestGiver = questGiver ?? throw new ArgumentNullException(nameof(questGiver));
 			OptionalQuestSharer = optionalQuestSharer ?? throw new ArgumentNullException(nameof(optionalQuestSharer));
@@ -45,6 +46,7 @@ namespace FreecraftCore
 		}
 
 		public SMSG_QUESTGIVER_QUEST_DETAILS_Payload([NotNull] ObjectGuid questGiver, int questId)
+			: this()
 		{
 			QuestGiver = questGiver ?? throw new ArgumentNullException(nameof(questGiver));
 			QuestId = questId;
@@ -53,7 +55,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal SMSG_QUESTGIVER_QUEST_DETAILS_Payload()
+		public SMSG_QUESTGIVER_QUEST_DETAILS_Payload()
+			: base(NetworkOperationCode.SMSG_QUESTGIVER_QUEST_DETAILS)
 		{
 
 		}

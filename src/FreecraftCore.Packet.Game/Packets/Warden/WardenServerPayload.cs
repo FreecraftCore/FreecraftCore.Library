@@ -17,6 +17,7 @@ namespace FreecraftCore
 		public byte[] Data { get; internal set; }
 
 		protected WardenServerPayload()
+			: base(NetworkOperationCode.SMSG_WARDEN_DATA)
 		{
 			
 		}

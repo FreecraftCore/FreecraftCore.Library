@@ -8,7 +8,7 @@ namespace FreecraftCore
 	[WireDataContract]
 	public sealed class RealmListContainer
 	{
-		[SendSize(SendSizeAttribute.SizeType.UShort)] //in 2.x and 3.x this is ushort but in 1.12.1 it's a uint32
+		[SendSize(PrimitiveSizeType.UInt16)] //in 2.x and 3.x this is ushort but in 1.12.1 it's a uint32
 		[WireMember(1)]
 		public RealmInfo[] _Realms { get; internal set; }
 
@@ -26,7 +26,7 @@ namespace FreecraftCore
 		}
 
 		//Serializer ctor
-		protected RealmListContainer()
+		public RealmListContainer()
 		{
 			
 		}

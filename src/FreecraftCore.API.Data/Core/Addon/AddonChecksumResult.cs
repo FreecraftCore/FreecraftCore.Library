@@ -10,7 +10,7 @@ namespace FreecraftCore
 	/// check.
 	/// </summary>
 	[WireDataContract]
-	public sealed class AddonChecksumResult
+	public sealed partial class AddonChecksumResult
 	{
 		/// <summary>
 		/// TODO: What does this mean?
@@ -45,14 +45,6 @@ namespace FreecraftCore
 		[WireMember(6)]
 		public bool UseUrl { get; internal set; }
 
-		/// <summary>
-		/// Serializer ctor.
-		/// </summary>
-		protected AddonChecksumResult()
-		{
-			
-		}
-		
 		/// <summary>
 		/// Creates a result with a CRC and Public Key enabled at
 		/// minimum
@@ -102,6 +94,14 @@ namespace FreecraftCore
 			UsePublicKey = false;
 			Unk = crcUnkVal;
 			UseUrl = useUrl;
+		}
+
+		/// <summary>
+		/// Serializer ctor.
+		/// </summary>
+		public AddonChecksumResult()
+		{
+			
 		}
 	}
 }

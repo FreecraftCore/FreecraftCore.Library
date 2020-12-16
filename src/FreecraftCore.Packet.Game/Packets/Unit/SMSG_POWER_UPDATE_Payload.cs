@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_POWER_UPDATE)]
 	[WireDataContract]
-	public sealed class SMSG_POWER_UPDATE_Payload : GamePacketPayload
+	public sealed partial class SMSG_POWER_UPDATE_Payload : GamePacketPayload
 	{
 		//TODO: Extract
 		public enum Powers : byte
@@ -50,6 +50,7 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SMSG_POWER_UPDATE_Payload(PackedGuid unitGuid, Powers powerType, int newValue)
+			: this()
 		{
 			UnitGuid = unitGuid;
 			PowerType = powerType;
@@ -59,7 +60,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor
 		/// </summary>
-		protected SMSG_POWER_UPDATE_Payload()
+		public SMSG_POWER_UPDATE_Payload()
+			: base(NetworkOperationCode.SMSG_POWER_UPDATE)
 		{
 			
 		}

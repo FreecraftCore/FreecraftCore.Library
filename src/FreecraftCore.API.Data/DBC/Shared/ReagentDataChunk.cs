@@ -47,7 +47,7 @@ namespace FreecraftCore
 			Eight = eight;
 		}
 
-		protected ReagentDataChunk()
+		public ReagentDataChunk()
 		{
 			
 		}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_CANCEL_AURA)]
-	public sealed class CMSG_CANCEL_AURA_Payload : GamePacketPayload
+	public sealed partial class CMSG_CANCEL_AURA_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// Represents the spell id to cancel the aura for.
@@ -20,6 +20,7 @@ namespace FreecraftCore
 		public int SpellId { get; internal set; }
 
 		public CMSG_CANCEL_AURA_Payload(int spellId)
+			: this()
 		{
 			if (spellId <= 0) throw new ArgumentOutOfRangeException(nameof(spellId));
 
@@ -29,7 +30,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal CMSG_CANCEL_AURA_Payload()
+		public CMSG_CANCEL_AURA_Payload()
+			: base(NetworkOperationCode.CMSG_CANCEL_AURA)
 		{
 
 		}

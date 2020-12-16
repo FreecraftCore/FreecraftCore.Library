@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -11,12 +11,13 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_GOSSIP_HELLO)]
-	public sealed class CMSG_GOSSIP_HELLO_Payload : GamePacketPayload
+	public sealed partial class CMSG_GOSSIP_HELLO_Payload : GamePacketPayload
 	{
 		[WireMember(1)]
 		public ObjectGuid Target { get; internal set; }
 
 		public CMSG_GOSSIP_HELLO_Payload([NotNull] ObjectGuid target)
+			: this()
 		{
 			Target = target ?? throw new ArgumentNullException(nameof(target));
 		}
@@ -24,7 +25,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal CMSG_GOSSIP_HELLO_Payload()
+		public CMSG_GOSSIP_HELLO_Payload()
+			: base(NetworkOperationCode.CMSG_GOSSIP_HELLO)
 		{
 
 		}

@@ -39,7 +39,7 @@ namespace FreecraftCore
 			await ReadBytesIntoArrayFromStream(bytes);
 
 			//Read the header, it contains some information needed to read the whole DBC
-			return serializer.Deserialize<DBCHeader>(bytes);
+			return serializer.Read<DBCHeader>(new Span<byte>(bytes), 0);
 		}
 	}
 }

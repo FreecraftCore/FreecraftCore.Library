@@ -27,7 +27,7 @@ namespace FreecraftCore
 			RecieverGuid = recieverGuid ?? throw new ArgumentNullException(nameof(recieverGuid));
 		}
 
-		protected NetworkChatChannelMessageDetails()
+		public NetworkChatChannelMessageDetails()
 		{
 			
 		}

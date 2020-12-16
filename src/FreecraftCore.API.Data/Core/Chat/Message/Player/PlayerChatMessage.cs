@@ -10,17 +10,15 @@ namespace FreecraftCore
 	[WireDataContractBaseType((int)ChatMessageType.CHAT_MSG_WHISPER, typeof(WhisperPlayerChatMessage))] //for player whispers
 	[WireDataContractBaseType((int)ChatMessageType.CHAT_MSG_SAY, typeof(SayPlayerChatMessage))]
 	[WireDataContractBaseType((int)ChatMessageType.CHAT_MSG_AFK, typeof(PlayerAfkChatMessage))]
-	[WireDataContract(WireDataContractAttribute.KeyType.Int32, InformationHandlingFlags.DontConsumeRead | InformationHandlingFlags.DontWrite)]
-	public abstract class PlayerChatMessage
+	[WireDataContract(PrimitiveSizeType.Int32)]
+	public abstract partial class PlayerChatMessage
 	{
-		//for some reason Blizzard sends uint32s for message type instead of the byte for enum.
-		[WireMember(1)]
-		internal uint _messageType { get; set; }
-
 		/// <summary>
 		/// Indicates the message type of the chat message.
 		/// </summary>
-		public ChatMessageType MessageType => (ChatMessageType)_messageType;
+		[EnumSize(PrimitiveSizeType.Int32)]
+		[WireMember(1)]
+		public ChatMessageType MessageType { get; internal set; }
 	
 		/// <summary>
 		/// Indicates the language of the chat message.
@@ -36,7 +34,7 @@ namespace FreecraftCore
 			if (!Enum.IsDefined(typeof(ChatLanguage), language))
 				throw new ArgumentOutOfRangeException(nameof(language), "Value should be defined in the ChatLanguage enum.");
 
-			_messageType = (uint)messageType;
+			MessageType = messageType;
 			Language = language;
 		}
 

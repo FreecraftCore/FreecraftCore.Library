@@ -57,7 +57,7 @@ namespace FreecraftCore
 			QuestItemIds = questItemIds;
 		}
 
-		protected GameObjectQueryResponseInfo()
+		public GameObjectQueryResponseInfo()
 		{
 			
 		}

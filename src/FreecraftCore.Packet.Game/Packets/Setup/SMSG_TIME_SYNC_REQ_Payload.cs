@@ -10,7 +10,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_TIME_SYNC_REQ)]
-	public sealed class SMSG_TIME_SYNC_REQ_Payload : GamePacketPayload
+	public sealed partial class SMSG_TIME_SYNC_REQ_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// Represents the counter for how many
@@ -21,6 +21,7 @@ namespace FreecraftCore
 		public int SynchronizationCounter { get; internal set; }
 
 		public SMSG_TIME_SYNC_REQ_Payload(int synchronizationCounter)
+			: this()
 		{
 			if (synchronizationCounter < 0) throw new ArgumentOutOfRangeException(nameof(synchronizationCounter));
 
@@ -30,7 +31,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private SMSG_TIME_SYNC_REQ_Payload()
+		public SMSG_TIME_SYNC_REQ_Payload()
+			: base(NetworkOperationCode.SMSG_TIME_SYNC_REQ)
 		{
 			
 		}

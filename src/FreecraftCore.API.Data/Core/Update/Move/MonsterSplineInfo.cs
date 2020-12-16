@@ -51,7 +51,7 @@ namespace FreecraftCore
 		/// </summary>
 		public bool HasCatMulRomSpline => (SplineFlags & SplineMoveFlags.Mask_CatmullRom) != 0;
 
-		[SendSize(SendSizeAttribute.SizeType.Int32)] //we have to add 1 to the size, it's what TC does
+		[SendSize(PrimitiveSizeType.Int32)] //we have to add 1 to the size, it's what TC does
 		[Optional(nameof(HasCatMulRomSpline))]
 		[WireMember(10)]
 		public Vector3<float>[] OptionalCatMulRomSplinePoints { get; internal set; }

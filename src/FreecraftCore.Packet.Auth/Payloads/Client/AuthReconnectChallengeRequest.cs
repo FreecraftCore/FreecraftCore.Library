@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[AuthenticationClientPayload(AuthOperationCode.AUTH_RECONNECT_CHALLENGE)] //TODO: Figure out how to support linking with the limited information.
-	public sealed class AuthReconnectChallengeRequest : AuthenticationClientPayload
+	public sealed partial class AuthReconnectChallengeRequest : AuthenticationClientPayload
 	{
 		//TODO: Remove this crap
 		/// <inheritdoc />
@@ -22,6 +22,7 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public AuthReconnectChallengeRequest([NotNull] AuthChallengeData challengeData)
+			: this()
 		{
 			ChallengeData = challengeData ?? throw new ArgumentNullException(nameof(challengeData));
 		}
@@ -29,7 +30,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor
 		/// </summary>
-		private AuthReconnectChallengeRequest()
+		public AuthReconnectChallengeRequest()
+			: base(AuthOperationCode.AUTH_RECONNECT_CHALLENGE)
 		{
 			
 		}

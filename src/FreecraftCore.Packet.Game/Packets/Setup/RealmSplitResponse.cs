@@ -21,7 +21,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_REALM_SPLIT)]
-	public sealed class RealmSplitResponse : GamePacketPayload
+	public sealed partial class RealmSplitResponse : GamePacketPayload
 	{
 		//TODO: Extrat this.
 		/// <summary>
@@ -62,11 +62,13 @@ namespace FreecraftCore
 		/// </summary>
 		/// <param name="unk">Unk should match the unk in the <see cref="RealmSplitRequest"/>.</param>
 		public RealmSplitResponse(int unk)
+			: this()
 		{
 			Unk = unk;
 		}
 
 		public RealmSplitResponse()
+			: base(NetworkOperationCode.SMSG_REALM_SPLIT)
 		{
 			
 		}

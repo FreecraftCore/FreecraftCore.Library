@@ -9,7 +9,7 @@ namespace FreecraftCore
 	/// Object block sent for near objects.
 	/// </summary>
 	[WireDataContract]
-	public sealed class ObjectUpdateNearObjectsBlock : ObjectUpdateBlock
+	public sealed partial class ObjectUpdateNearObjectsBlock : ObjectUpdateBlock
 	{
 		/// <summary>
 		/// Collection of object GUIDS that have been destroyed.
@@ -26,7 +26,7 @@ namespace FreecraftCore
 			NearGuids = nearGuids ?? throw new ArgumentNullException(nameof(nearGuids));
 		}
 
-		protected ObjectUpdateNearObjectsBlock()
+		public ObjectUpdateNearObjectsBlock()
 		{
 
 		}

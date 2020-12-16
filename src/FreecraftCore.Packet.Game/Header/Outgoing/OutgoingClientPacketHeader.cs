@@ -32,7 +32,7 @@ namespace FreecraftCore
 		//and these 2 bytes likely represent something different
 
 		[WireMember(3)]
-		private short unknownBytes = 0;
+		internal short unknownBytes = 0;
 
 		/// <inheritdoc />
 		public int PayloadSize => PacketSize - 4;
@@ -57,7 +57,7 @@ namespace FreecraftCore
 			SerializedPacketSize = (ushort)(payloadSize + 4);
 		}
 
-		protected OutgoingClientPacketHeader()
+		public OutgoingClientPacketHeader()
 		{
 				
 		}

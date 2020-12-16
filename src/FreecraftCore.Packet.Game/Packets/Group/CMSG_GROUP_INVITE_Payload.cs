@@ -8,7 +8,7 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_GROUP_INVITE)]
-	public sealed class CMSG_GROUP_INVITE_Payload : GamePacketPayload
+	public sealed partial class CMSG_GROUP_INVITE_Payload : GamePacketPayload
 	{
 		//For some reason Blizzard ONLY supports the option to invite based on string
 		//I think that's silly
@@ -21,6 +21,7 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public CMSG_GROUP_INVITE_Payload([NotNull] string playerToInvite)
+			: this()
 		{
 			if(string.IsNullOrWhiteSpace(playerToInvite)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(playerToInvite));
 
@@ -30,7 +31,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private CMSG_GROUP_INVITE_Payload()
+		public CMSG_GROUP_INVITE_Payload()
+			: base(NetworkOperationCode.CMSG_GROUP_INVITE)
 		{
 			
 		}

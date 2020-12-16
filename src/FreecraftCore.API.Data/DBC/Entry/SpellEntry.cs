@@ -14,11 +14,14 @@ namespace FreecraftCore
 	/// The structure for the Spell DBC entry.
 	/// </summary>
 	[DBC]
+	[WireMessageType]
+	[KnownGeneric(typeof(string))]
+	[KnownGeneric(typeof(StringDBCReference))]
 	[StringDBC(typeof(SpellEntry<>))]
 	[Table("Spell")]
 	[JsonObject]
 	[WireDataContract]
-	public sealed class SpellEntry<TStringType> : IDBCEntryIdentifiable
+	public sealed partial class SpellEntry<TStringType> : IDBCEntryIdentifiable
 	{
 		/// <inheritdoc />
 		public int EntryId => SpellId;

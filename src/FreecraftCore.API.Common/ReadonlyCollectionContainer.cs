@@ -7,7 +7,6 @@ using JetBrains.Annotations;
 
 namespace FreecraftCore
 {
-	[WireDataContract]
 	public abstract class ReadonlyCollectionContainer<TItemType> : IEnumerable<TItemType>
 	{
 		/// <summary>

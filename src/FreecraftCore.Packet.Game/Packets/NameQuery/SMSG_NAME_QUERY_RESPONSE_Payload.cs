@@ -8,7 +8,7 @@ namespace FreecraftCore
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_NAME_QUERY_RESPONSE)]
 	[ProtocolGrouping(ProtocolCode.Game)] //TODO: Change this protocol to something more specific
-	public class SMSG_NAME_QUERY_RESPONSE_Payload : GamePacketPayload
+	public partial class SMSG_NAME_QUERY_RESPONSE_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// Enumeration of response codes for
@@ -51,6 +51,7 @@ namespace FreecraftCore
 		//TODO: Documentat overloads
 		/// <inheritdoc />
 		public SMSG_NAME_QUERY_RESPONSE_Payload(PackedGuid requestedGuid, NameQueryResponseCode responseCode, NameQueryResult result)
+			: this()
 		{
 			RequestedGuid = requestedGuid;
 			ResponseCode = responseCode;
@@ -59,6 +60,7 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SMSG_NAME_QUERY_RESPONSE_Payload(PackedGuid requestedGuid, NameQueryResponseCode responseCode)
+			: this()
 		{
 			RequestedGuid = requestedGuid;
 			ResponseCode = responseCode;
@@ -66,6 +68,7 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SMSG_NAME_QUERY_RESPONSE_Payload(PackedGuid requestedGuid, NameQueryResult result)
+			: this()
 		{
 			RequestedGuid = requestedGuid;
 			ResponseCode = NameQueryResponseCode.Success;
@@ -74,6 +77,7 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SMSG_NAME_QUERY_RESPONSE_Payload(PackedGuid requestedGuid)
+			: this()
 		{
 			RequestedGuid = requestedGuid;
 			ResponseCode = NameQueryResponseCode.Failure;
@@ -82,7 +86,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected SMSG_NAME_QUERY_RESPONSE_Payload()
+		public SMSG_NAME_QUERY_RESPONSE_Payload()
+			: base(NetworkOperationCode.SMSG_NAME_QUERY_RESPONSE)
 		{
 			
 		}

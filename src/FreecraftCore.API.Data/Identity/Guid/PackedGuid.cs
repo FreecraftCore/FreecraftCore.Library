@@ -3,7 +3,7 @@
 namespace FreecraftCore
 {
 	//TODO: This will be handled in a special serializer
-	[IncludeCustomTypeSerializer(typeof(CustomPackedGuidTypeSerializer))]
+	[CustomTypeSerializer(typeof(CustomPackedGuidTypeSerializer))]
 	[WireDataContract]
 	public class PackedGuid : BaseGuid
 	{

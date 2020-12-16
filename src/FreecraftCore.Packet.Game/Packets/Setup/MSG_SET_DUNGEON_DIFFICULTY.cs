@@ -7,7 +7,7 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.MSG_SET_DUNGEON_DIFFICULTY)]
-	public sealed class MSG_SET_DUNGEON_DIFFICULTY : GamePacketPayload
+	public sealed partial class MSG_SET_DUNGEON_DIFFICULTY : GamePacketPayload
 	{
 		[WireMember(1)]
 		public SMSG_INSTANCE_DIFFICULTY_PAYLOAD.Difficulty DungeonDifficulty { get; internal set; } = SMSG_INSTANCE_DIFFICULTY_PAYLOAD.Difficulty.REGULAR_DIFFICULTY;
@@ -32,6 +32,7 @@ namespace FreecraftCore
 		/// Creates a default/test message instance.
 		/// </summary>
 		public MSG_SET_DUNGEON_DIFFICULTY()
+			: base(NetworkOperationCode.MSG_SET_DUNGEON_DIFFICULTY)
 		{
 			
 		}

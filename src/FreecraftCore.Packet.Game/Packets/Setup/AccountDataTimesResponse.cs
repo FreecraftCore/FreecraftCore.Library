@@ -9,7 +9,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_ACCOUNT_DATA_TIMES)]
-	public sealed class AccountDataTimesResponse : GamePacketPayload
+	public sealed partial class AccountDataTimesResponse : GamePacketPayload
 	{
 		/// <inheritdoc />
 		public override bool isValid => true;
@@ -19,6 +19,7 @@ namespace FreecraftCore
 		public byte[] Data { get; internal set; }
 
 		public AccountDataTimesResponse()
+			: base(NetworkOperationCode.SMSG_ACCOUNT_DATA_TIMES)
 		{
 			
 		}

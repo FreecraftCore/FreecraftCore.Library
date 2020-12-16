@@ -119,7 +119,7 @@ namespace FreecraftCore
 		/// </summary>
 		//TODO: Check Mangos if they look for a null terminator on Identity
 		[DontTerminate] //JackPoz doesn't terminate and it looks like Trinitycore doesn't really expect a null terminator either.
-		[SendSize(SendSizeAttribute.SizeType.Byte)]
+		[SendSize(PrimitiveSizeType.Byte)]
 		[WireMember(13)]
 		public string Identity { get; internal set; }
 

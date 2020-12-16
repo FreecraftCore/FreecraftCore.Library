@@ -8,7 +8,7 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_DESTROY_OBJECT)]
-	public sealed class SMSG_DESTROY_OBJECT_Payload : GamePacketPayload
+	public sealed partial class SMSG_DESTROY_OBJECT_Payload : GamePacketPayload
 	{
 		[WireMember(1)]
 		public ObjectGuid DestroyedObject { get; internal set; }
@@ -18,12 +18,14 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SMSG_DESTROY_OBJECT_Payload([NotNull] ObjectGuid destroyedObject, bool isForDeath)
+			: this()
 		{
 			DestroyedObject = destroyedObject ?? throw new ArgumentNullException(nameof(destroyedObject));
 			IsForDeath = isForDeath;
 		}
 
-		protected SMSG_DESTROY_OBJECT_Payload()
+		public SMSG_DESTROY_OBJECT_Payload()
+			: base(NetworkOperationCode.SMSG_DESTROY_OBJECT)
 		{
 			
 		}

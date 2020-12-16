@@ -8,7 +8,7 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_GROUP_LIST)]
-	public sealed class SMSG_GROUP_LIST_Payload : GamePacketPayload
+	public sealed partial class SMSG_GROUP_LIST_Payload : GamePacketPayload
 	{
 		[WireMember(1)]
 		public GroupType PartyType { get; internal set; }
@@ -33,7 +33,7 @@ namespace FreecraftCore
 		public int UpdateCounter { get; internal set; }
 
 		//Follow is a collection of group member data. Similar to above.
-		[SendSize(SendSizeAttribute.SizeType.Int32)] //for some reason Blizzard wasted 3 bytes here.
+		[SendSize(PrimitiveSizeType.Int32)] //for some reason Blizzard wasted 3 bytes here.
 		[WireMember(9)]
 		internal GroupListMemberData[] _GroupMemberDataList { get; set; }
 
@@ -60,6 +60,7 @@ namespace FreecraftCore
 		/// Serializer ctor.
 		/// </summary>
 		public SMSG_GROUP_LIST_Payload()
+			: base(NetworkOperationCode.SMSG_GROUP_LIST)
 		{
 			
 		}

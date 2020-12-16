@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[AuthenticationServerPayload(AuthOperationCode.REALM_LIST)] //TODO: Figure out how to support linking with the limited information.
-	public class AuthRealmListResponse : AuthenticationServerPayload
+	public partial class AuthRealmListResponse : AuthenticationServerPayload
 	{
 		//TODO: Implement
 		public override bool isValid { get; } = true;
@@ -30,7 +30,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Realm information.
 		/// </summary>
-		[SendSize(SendSizeAttribute.SizeType.UShort)] //in 2.x and 3.x this is ushort but in 1.12.1 it's a uint32
+		[SendSize(PrimitiveSizeType.UInt16)] //in 2.x and 3.x this is ushort but in 1.12.1 it's a uint32
 		[WireMember(3)]
 		internal RealmInfo[] realms { get; set; }
 
@@ -53,6 +53,7 @@ namespace FreecraftCore
 		/// <param name="payloadSize">The size of the payload.</param>
 		/// <param name="realms">The realms</param>
 		public AuthRealmListResponse(ushort payloadSize, [NotNull] RealmInfo[] realms)
+			: this()
 		{
 			this.realms = realms ?? throw new ArgumentNullException(nameof(realms));
 			PayloadSize = payloadSize;
@@ -61,6 +62,7 @@ namespace FreecraftCore
 		}
 
 		public AuthRealmListResponse()
+			: base(AuthOperationCode.REALM_LIST)
 		{
 
 		}

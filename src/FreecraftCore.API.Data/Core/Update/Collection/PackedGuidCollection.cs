@@ -8,7 +8,7 @@ namespace FreecraftCore
 	public sealed class PackedGuidCollection : ReadonlyCollectionContainer<PackedGuid>
 	{
 		//We have to do this because serializer will choke otherwise
-		[SendSize(SendSizeAttribute.SizeType.Int32)]
+		[SendSize(PrimitiveSizeType.Int32)]
 		[WireMember(1)]
 		internal PackedGuid[] _items;
 
@@ -24,7 +24,7 @@ namespace FreecraftCore
 			_items = items ?? throw new ArgumentNullException(nameof(items));
 		}
 
-		protected PackedGuidCollection()
+		public PackedGuidCollection()
 		{
 
 		}

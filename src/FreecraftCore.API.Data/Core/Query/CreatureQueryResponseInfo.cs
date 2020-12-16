@@ -80,7 +80,7 @@ namespace FreecraftCore
 			CreatureMovementInfoId = creatureMovementInfoId;
 		}
 
-		protected CreatureQueryResponseInfo()
+		public CreatureQueryResponseInfo()
 		{
 			
 		}

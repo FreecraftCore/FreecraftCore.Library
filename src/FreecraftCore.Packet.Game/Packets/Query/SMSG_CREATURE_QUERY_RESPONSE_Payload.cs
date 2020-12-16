@@ -8,7 +8,7 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_CREATURE_QUERY_RESPONSE)]
-	public sealed class SMSG_CREATURE_QUERY_RESPONSE_Payload : GamePacketPayload, IQueryResponsePayload<CreatureQueryResponseInfo>
+	public sealed partial class SMSG_CREATURE_QUERY_RESPONSE_Payload : GamePacketPayload, IQueryResponsePayload<CreatureQueryResponseInfo>
 	{
 		[WireMember(1)]
 		internal uint PackedResponseId { get; set; }
@@ -27,6 +27,7 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SMSG_CREATURE_QUERY_RESPONSE_Payload(int queryId, [NotNull] CreatureQueryResponseInfo result)
+			: this()
 		{
 			//No bitwise math needed since success if 0x0
 			PackedResponseId = (uint)queryId;
@@ -38,11 +39,13 @@ namespace FreecraftCore
 		/// </summary>
 		/// <param name="queryId">The query id.</param>
 		public SMSG_CREATURE_QUERY_RESPONSE_Payload(uint queryId)
+			: this()
 		{
 			PackedResponseId = queryId & 0x80000000;
 		}
 
 		public SMSG_CREATURE_QUERY_RESPONSE_Payload()
+			: base(NetworkOperationCode.SMSG_CREATURE_QUERY_RESPONSE)
 		{
 			
 		}

@@ -51,7 +51,7 @@ namespace FreecraftCore
 			Y = y;
 		}
 
-		protected Vector2()
+		public Vector2()
 		{
 
 		}

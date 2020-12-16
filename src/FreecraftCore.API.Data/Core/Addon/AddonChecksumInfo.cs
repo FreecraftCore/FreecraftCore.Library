@@ -43,7 +43,7 @@ namespace FreecraftCore
 			AddonName = addonName;
 		}
 
-		protected AddonChecksumInfo()
+		public AddonChecksumInfo()
 		{
 			//For deserialization
 		}

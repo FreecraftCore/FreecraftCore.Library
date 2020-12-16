@@ -21,14 +21,14 @@ namespace FreecraftCore
 		/// A generator modulo N.
 		/// (I don't really know what that means)
 		/// </summary>
-		[SendSize(SendSizeAttribute.SizeType.Byte)] //Size is sent as a uint8. Trinitycore always sends 1
+		[SendSize(PrimitiveSizeType.Byte)] //Size is sent as a uint8. Trinitycore always sends 1
 		[WireMember(2)]
 		public byte[] g { get; internal set; }
 
 		/// <summary>
 		/// A large safe prime (N = 2q+1, where q is prime)
 		/// </summary>
-		[SendSize(SendSizeAttribute.SizeType.Byte)] //Trinitycore always send 32
+		[SendSize(PrimitiveSizeType.Byte)] //Trinitycore always send 32
 		[WireMember(3)]
 		public byte[] N { get; internal set; }
 
@@ -58,7 +58,7 @@ namespace FreecraftCore
 		}
 
 		//Serializer ctor
-		protected SRPToken()
+		public SRPToken()
 		{
 			
 		}

@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace FreecraftCore
 {
 	[WireDataContract]
-	public sealed class GuildPlayerChatMessage : PlayerChatMessage
+	public sealed partial class GuildPlayerChatMessage : PlayerChatMessage
 	{
 		/// <summary>
 		/// The chat message being sent.
@@ -23,7 +23,7 @@ namespace FreecraftCore
 			Message = message;
 		}
 
-		protected GuildPlayerChatMessage()
+		public GuildPlayerChatMessage()
 		{
 
 		}

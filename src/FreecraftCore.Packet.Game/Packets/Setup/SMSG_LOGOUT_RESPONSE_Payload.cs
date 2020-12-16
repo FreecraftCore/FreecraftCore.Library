@@ -8,7 +8,7 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_LOGOUT_RESPONSE)]
-	public sealed class SMSG_LOGOUT_RESPONSE_Payload : GamePacketPayload
+	public sealed partial class SMSG_LOGOUT_RESPONSE_Payload : GamePacketPayload
 	{
 		[WireMember(1)]
 		public LogoutResultCode Result { get; internal set; }
@@ -17,12 +17,14 @@ namespace FreecraftCore
 		public bool IsInstant { get; internal set; }
 
 		public SMSG_LOGOUT_RESPONSE_Payload(bool isInstant)
+			: this()
 		{
 			Result = LogoutResultCode.Success;
 			IsInstant = isInstant;
 		}
 
 		public SMSG_LOGOUT_RESPONSE_Payload(LogoutResultCode result)
+			: this()
 		{
 			if (!Enum.IsDefined(typeof(LogoutResultCode), result)) throw new InvalidEnumArgumentException(nameof(result), (int) result, typeof(LogoutResultCode));
 
@@ -33,7 +35,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal SMSG_LOGOUT_RESPONSE_Payload()
+		public SMSG_LOGOUT_RESPONSE_Payload()
+			: base(NetworkOperationCode.SMSG_LOGOUT_RESPONSE)
 		{
 			
 		}

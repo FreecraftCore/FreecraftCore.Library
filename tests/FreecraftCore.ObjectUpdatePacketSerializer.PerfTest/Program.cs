@@ -72,23 +72,6 @@ namespace FreecraftCore.ObjectUpdatePacketSerializer.PerfTest
 					}
 
 					Serializer = new SerializerService();
-
-					//TODO: Once we enable full custom type serializer support we won't need to register manually.
-					Serializer.RegisterType<PackedGuid>();
-					Serializer.RegisterType<UpdateFieldValueCollection>();
-
-					//We want to register all known packets and then PROXY_DTOs after
-					GamePacketMetadataMarker.SerializableTypes
-						.ToList()
-						.ForEach(t => Serializer.RegisterType(t));
-
-					//Then we want to register DTOs for unknown
-					GamePacketStubMetadataMarker.GamePacketPayloadStubTypes
-						.Where(t => GamePacketMetadataMarker.UnimplementedOperationCodes.Value.Contains(t.GetCustomAttribute<GamePayloadOperationCodeAttribute>().OperationCode))
-						.ToList()
-						.ForEach(t => Serializer.RegisterType(t));
-
-					Serializer.Compile();
 				}
 			}
 			catch(Exception e)
@@ -164,8 +147,8 @@ namespace FreecraftCore.ObjectUpdatePacketSerializer.PerfTest
 				Console.WriteLine($"Resulting capture capture deserialization attempt null for File: {entry.FileName}");
 
 			//We should have deserialized it. We want to make sure the opcode matches
-			if(entry.OpCode != payload.GetOperationCode())
-			Console.WriteLine($"Mismatched {nameof(NetworkOperationCode)} on packet capture File: {entry.FileName}. Expected: {entry.OpCode} Was: {payload.GetOperationCode()}");
+			if(entry.OpCode != payload.OperationCode)
+			Console.WriteLine($"Mismatched {nameof(NetworkOperationCode)} on packet capture File: {entry.FileName}. Expected: {entry.OpCode} Was: {payload.OperationCode}");
 		}
 
 		public class PacketCaptureTestEntry

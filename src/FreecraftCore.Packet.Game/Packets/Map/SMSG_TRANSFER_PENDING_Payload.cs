@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -10,7 +10,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_TRANSFER_PENDING)]
-	public sealed class SMSG_TRANSFER_PENDING_Payload : GamePacketPayload
+	public sealed partial class SMSG_TRANSFER_PENDING_Payload : GamePacketPayload
 	{
 		[WireMember(1)]
 		public int MapId { get; internal set; }
@@ -18,6 +18,7 @@ namespace FreecraftCore
 		//There is also a position here if we're on a transport.
 
 		public SMSG_TRANSFER_PENDING_Payload(int mapId)
+			: this()
 		{
 			//Blizzlike has map ID 0.
 			if (mapId < 0) throw new ArgumentOutOfRangeException(nameof(mapId));
@@ -28,7 +29,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal SMSG_TRANSFER_PENDING_Payload()
+		public SMSG_TRANSFER_PENDING_Payload()
+			: base(NetworkOperationCode.SMSG_TRANSFER_PENDING)
 		{
 
 		}

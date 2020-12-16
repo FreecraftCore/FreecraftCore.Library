@@ -35,7 +35,7 @@ namespace FreecraftCore
 			BuildNumber = buildNumber;
 		}
 
-		protected RealmBuildInformation()
+		public RealmBuildInformation()
 		{
 		}
 

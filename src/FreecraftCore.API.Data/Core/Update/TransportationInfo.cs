@@ -38,7 +38,7 @@ namespace FreecraftCore
 			TransportSeatId = transportSeatId;
 		}
 
-		protected TransportationInfo()
+		public TransportationInfo()
 		{
 			
 		}

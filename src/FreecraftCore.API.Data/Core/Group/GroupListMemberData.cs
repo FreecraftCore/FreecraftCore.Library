@@ -29,7 +29,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private GroupListMemberData()
+		public GroupListMemberData()
 		{
 			
 		}

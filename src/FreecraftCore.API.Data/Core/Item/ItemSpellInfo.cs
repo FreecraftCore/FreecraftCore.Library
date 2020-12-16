@@ -38,7 +38,7 @@ namespace FreecraftCore
 			SpellCategoryCooldown = spellCategoryCooldown;
 		}
 
-		protected ItemSpellInfo()
+		public ItemSpellInfo()
 		{
 			
 		}

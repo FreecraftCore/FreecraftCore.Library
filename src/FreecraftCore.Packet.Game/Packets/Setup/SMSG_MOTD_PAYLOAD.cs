@@ -9,14 +9,14 @@ namespace FreecraftCore
 	//TC says new in 2.0.1 which leads me to believe 3.3.5 and 1.12.1 will have differing structures.
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_MOTD)]
-	public sealed class SMSG_MOTD_PAYLOAD : GamePacketPayload
+	public sealed partial class SMSG_MOTD_PAYLOAD : GamePacketPayload
 	{
 		//the MOTD on Trinitycore is implemented as a tokenized string
 		//They split by the token and then it becomes a length-prefixed array of null terminated ASCII
 		//strings meaning we can easily handle that.
 		[Encoding(EncodingType.ASCII)]
 		[WireMember(1)]
-		[SendSize(SendSizeAttribute.SizeType.Int32)]
+		[SendSize(PrimitiveSizeType.Int32)]
 		internal string[] MessageOfTheDayByLines { get; set; }
 
 		/// <summary>
@@ -26,6 +26,7 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SMSG_MOTD_PAYLOAD([NotNull] string[] messageOfTheDayByLines)
+			: this()
 		{
 			MessageOfTheDayByLines = messageOfTheDayByLines ?? throw new ArgumentNullException(nameof(messageOfTheDayByLines));
 		}
@@ -33,7 +34,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected SMSG_MOTD_PAYLOAD()
+		public SMSG_MOTD_PAYLOAD()
+			: base(NetworkOperationCode.SMSG_MOTD)
 		{
 			
 		}

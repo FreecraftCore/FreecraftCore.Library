@@ -35,17 +35,17 @@ namespace FreecraftCore
 		[WireMember(5)]
 		public float Orientation { get; internal set; }
 
-		private bool IsOnTransport => MoveFlags.HasFlag(MovementFlag.MOVEMENTFLAG_ONTRANSPORT);
+		public bool IsOnTransport => MoveFlags.HasFlag(MovementFlag.MOVEMENTFLAG_ONTRANSPORT);
 
-		private bool HasTransportationTime => IsOnTransport && ExtraFlags.HasFlag(MovementFlagExtra.InterpolateMove);
+		public bool HasTransportationTime => IsOnTransport && ExtraFlags.HasFlag(MovementFlagExtra.InterpolateMove);
 
 		//Note, important to use HasAnyFlags as it checks if EITHER flag is set
-		private bool HasMovementPitch => MoveFlags.HasAnyFlags(MovementFlag.MOVEMENTFLAG_SWIMMING | MovementFlag.MOVEMENTFLAG_FLYING)
+		public bool HasMovementPitch => MoveFlags.HasAnyFlags(MovementFlag.MOVEMENTFLAG_SWIMMING | MovementFlag.MOVEMENTFLAG_FLYING)
 			|| ExtraFlags.HasFlag(MovementFlagExtra.AlwaysAllowPitching);
 
-		private bool IsFalling => MoveFlags.HasFlag(MovementFlag.MOVEMENTFLAG_FALLING);
+		public bool IsFalling => MoveFlags.HasFlag(MovementFlag.MOVEMENTFLAG_FALLING);
 
-		private bool HasSplineElevation => MoveFlags.HasFlag(MovementFlag.MOVEMENTFLAG_SPLINE_ELEVATION);
+		public bool HasSplineElevation => MoveFlags.HasFlag(MovementFlag.MOVEMENTFLAG_SPLINE_ELEVATION);
 
 		[Optional(nameof(IsOnTransport))]
 		[WireMember(6)]
@@ -95,7 +95,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected MovementInfo()
+		public MovementInfo()
 		{
 			
 		}

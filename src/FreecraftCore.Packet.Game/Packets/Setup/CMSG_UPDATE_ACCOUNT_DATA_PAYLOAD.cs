@@ -12,7 +12,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_UPDATE_ACCOUNT_DATA)]
-	public sealed class CMSG_UPDATE_ACCOUNT_DATA_PAYLOAD : GamePacketPayload
+	public sealed partial class CMSG_UPDATE_ACCOUNT_DATA_PAYLOAD : GamePacketPayload
 	{
 		//TODO: Extract out of the class
 		public enum AccountDataType : int
@@ -53,6 +53,7 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public CMSG_UPDATE_ACCOUNT_DATA_PAYLOAD(AccountDataType dataType, [NotNull] string timeStamp, [NotNull] string configData)
+			: this()
 		{
 			DataType = dataType;
 			TimeStamp = timeStamp ?? throw new ArgumentNullException(nameof(timeStamp));
@@ -60,7 +61,8 @@ namespace FreecraftCore
 		}
 
 
-		protected CMSG_UPDATE_ACCOUNT_DATA_PAYLOAD()
+		public CMSG_UPDATE_ACCOUNT_DATA_PAYLOAD()
+			: base(NetworkOperationCode.CMSG_UPDATE_ACCOUNT_DATA)
 		{
 			
 		}

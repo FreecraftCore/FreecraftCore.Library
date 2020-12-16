@@ -18,7 +18,6 @@ namespace DynamicProxy.GamePacketPayload.PerformanceTests
 			foreach(Type t in dynamicProxies)
 			{
 				//Console.WriteLine($"Registering: {t.Name}");
-				serializer.RegisterType(t);
 			}
 			stopWatch.Stop();
 

@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_UPDATE_ACCOUNT_DATA_COMPLETE)]
-	public sealed class SMSG_UPDATE_ACCOUNT_DATA_COMPLETE_PAYLOAD : GamePacketPayload
+	public sealed partial class SMSG_UPDATE_ACCOUNT_DATA_COMPLETE_PAYLOAD : GamePacketPayload
 	{
 		//TODO: Extract enum
 		/// <summary>
@@ -29,11 +29,13 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SMSG_UPDATE_ACCOUNT_DATA_COMPLETE_PAYLOAD(CMSG_UPDATE_ACCOUNT_DATA_PAYLOAD.AccountDataType dataType)
+			: this()
 		{
 			DataType = dataType;
 		}
 
-		protected SMSG_UPDATE_ACCOUNT_DATA_COMPLETE_PAYLOAD()
+		public SMSG_UPDATE_ACCOUNT_DATA_COMPLETE_PAYLOAD()
+			: base(NetworkOperationCode.SMSG_UPDATE_ACCOUNT_DATA_COMPLETE)
 		{
 			
 		}

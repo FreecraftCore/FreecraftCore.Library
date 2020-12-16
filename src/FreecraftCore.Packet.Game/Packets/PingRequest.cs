@@ -4,7 +4,7 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_PING)]
-	public sealed class PingRequest : GamePacketPayload
+	public sealed partial class PingRequest : GamePacketPayload
 	{
 		/// <inheritdoc />
 		public override bool isValid => true;
@@ -16,6 +16,7 @@ namespace FreecraftCore
 		public uint Latency { get; internal set; }
 
 		public PingRequest(uint ping, uint latency)
+			: this()
 		{
 			Ping = ping;
 			Latency = latency;
@@ -24,7 +25,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private PingRequest()
+		public PingRequest()
+			: base(NetworkOperationCode.CMSG_PING)
 		{
 			
 		}

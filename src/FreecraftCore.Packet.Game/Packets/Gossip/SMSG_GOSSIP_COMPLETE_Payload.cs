@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -11,13 +11,14 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_GOSSIP_COMPLETE)]
-	public sealed class SMSG_GOSSIP_COMPLETE_Payload : GamePacketPayload
+	public sealed partial class SMSG_GOSSIP_COMPLETE_Payload : GamePacketPayload
 	{
 		//Just a command opcode. Contains no actual data.
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
 		public SMSG_GOSSIP_COMPLETE_Payload()
+			: base(NetworkOperationCode.SMSG_GOSSIP_COMPLETE)
 		{
 
 		}

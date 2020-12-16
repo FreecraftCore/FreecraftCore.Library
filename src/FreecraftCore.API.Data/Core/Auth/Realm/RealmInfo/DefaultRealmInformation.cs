@@ -70,7 +70,7 @@ namespace FreecraftCore
 			RealmId = realmId;
 		}
 
-		protected DefaultRealmInformation()
+		public DefaultRealmInformation()
 		{
 
 		}

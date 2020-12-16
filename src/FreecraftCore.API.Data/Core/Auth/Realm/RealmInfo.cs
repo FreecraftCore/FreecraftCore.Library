@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace FreecraftCore
 {
 	[WireDataContract]
-	public class RealmInfo
+	public partial class RealmInfo
 	{
 		/// <summary>
 		/// Realm Type
@@ -66,7 +66,7 @@ namespace FreecraftCore
 				throw new ArgumentNullException(nameof(buildInfo), $"{defaultInformation} has the {RealmFlags.SpecifyBuild} flags but no build information is provided.");
 		}
 
-		protected RealmInfo()
+		public RealmInfo()
 		{
 
 		}

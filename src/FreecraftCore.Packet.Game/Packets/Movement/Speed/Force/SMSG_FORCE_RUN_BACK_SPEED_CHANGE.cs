@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -13,7 +13,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_FORCE_RUN_BACK_SPEED_CHANGE)]
-	public sealed class SMSG_FORCE_RUN_BACK_SPEED_CHANGE_Payload : GamePacketPayload, IMovementSpeedChangePayload
+	public sealed partial class SMSG_FORCE_RUN_BACK_SPEED_CHANGE_Payload : GamePacketPayload, IMovementSpeedChangePayload
 	{
 		[WireMember(1)]
 		public PackedGuid Target { get; internal set; }
@@ -34,7 +34,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal SMSG_FORCE_RUN_BACK_SPEED_CHANGE_Payload()
+		public SMSG_FORCE_RUN_BACK_SPEED_CHANGE_Payload()
+			: base(NetworkOperationCode.SMSG_FORCE_RUN_BACK_SPEED_CHANGE)
 		{
 
 		}

@@ -79,7 +79,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal SpellTargetInfo()
+		public SpellTargetInfo()
 		{
 			
 		}

@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace FreecraftCore
 {
 	[WireDataContract]
-	public sealed class ChannelPlayerChatMessage : PlayerChatMessage
+	public sealed partial class ChannelPlayerChatMessage : PlayerChatMessage
 	{
 		/// <summary>
 		/// The targeted reciever of the message.
@@ -32,7 +32,7 @@ namespace FreecraftCore
 			Message = message;
 		}
 
-		protected ChannelPlayerChatMessage()
+		public ChannelPlayerChatMessage()
 		{
 			
 		}

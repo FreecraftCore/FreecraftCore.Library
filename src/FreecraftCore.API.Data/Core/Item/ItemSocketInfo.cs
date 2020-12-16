@@ -26,7 +26,7 @@ namespace FreecraftCore
 			GemProperties = gemProperties;
 		}
 
-		protected ItemSocketInfo()
+		public ItemSocketInfo()
 		{
 			
 		}

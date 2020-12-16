@@ -28,7 +28,7 @@ namespace FreecraftCore
 		public float ZPosition { get; internal set; }
 
 		//TODO: Create a real ctor if we ever make a server
-		protected TempLocationStructure()
+		public TempLocationStructure()
 		{
 			//serializer ctor
 		}

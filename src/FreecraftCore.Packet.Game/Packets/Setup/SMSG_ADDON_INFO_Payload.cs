@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using FreecraftCore.Serializer;
 using JetBrains.Annotations;
@@ -11,11 +11,11 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_ADDON_INFO)]
-	public sealed class SMSG_ADDON_INFO_Payload : GamePacketPayload
+	public sealed partial class SMSG_ADDON_INFO_Payload : GamePacketPayload
 	{
 		[KnownSize(23)] //TC sends 23 of these
 		[WireMember(1)]
-		private AddonChecksumResult[] _AddonChecks;
+		internal AddonChecksumResult[] _AddonChecks;
 
 		/// <summary>
 		/// The results of the addon checks.
@@ -24,10 +24,11 @@ namespace FreecraftCore
 
 		//TODO: Implement banned addon handling
 		[WireMember(2)]
-		private int BannedAddonCount = 0;
+		internal int BannedAddonCount = 0;
 
 		/// <inheritdoc />
 		public SMSG_ADDON_INFO_Payload([NotNull] AddonChecksumResult[] addonChecks)
+			: this()
 		{
 			//TODO: Assert size
 			_AddonChecks = addonChecks ?? throw new ArgumentNullException(nameof(addonChecks));
@@ -36,7 +37,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected SMSG_ADDON_INFO_Payload()
+		public SMSG_ADDON_INFO_Payload()
+			: base(NetworkOperationCode.SMSG_ADDON_INFO)
 		{
 
 		}

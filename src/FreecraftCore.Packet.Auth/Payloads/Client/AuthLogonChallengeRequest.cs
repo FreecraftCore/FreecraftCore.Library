@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[AuthenticationClientPayload(AuthOperationCode.AUTH_LOGON_CHALLENGE)] //TODO: Figure out how to support linking with the limited information.
-	public class AuthLogonChallengeRequest : AuthenticationClientPayload
+	public partial class AuthLogonChallengeRequest : AuthenticationClientPayload
 	{
 		/// <inheritdoc />
 		public override bool isValid => Challenge.Protocol.VerifyIsDefined() && Challenge.Game.VerifyIsDefined() && Challenge.Expansion.VerifyIsDefined();
@@ -24,12 +24,14 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public AuthLogonChallengeRequest([NotNull] AuthChallengeData challenge)
+			: this()
 		{
 			Challenge = challenge ?? throw new ArgumentNullException(nameof(challenge));
 		}
 
 		//Serializer ctor.
-		private AuthLogonChallengeRequest()
+		public AuthLogonChallengeRequest()
+			: base(AuthOperationCode.AUTH_LOGON_CHALLENGE)
 		{
 			
 		}

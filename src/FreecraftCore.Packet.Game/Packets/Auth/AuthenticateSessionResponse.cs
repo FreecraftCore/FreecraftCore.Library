@@ -11,7 +11,7 @@ namespace FreecraftCore
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_AUTH_RESPONSE)] //the response to a request to authenticate a session
 	[ProtocolGrouping(ProtocolCode.Authentication)] //Though this isn't part of the actual authserver stuff it's still auth.
-	public class AuthenticateSessionResponse : GamePacketPayload
+	public partial class AuthenticateSessionResponse : GamePacketPayload
 	{
 		/// <inheritdoc />
 		public override bool isValid { get; } = true;
@@ -39,6 +39,7 @@ namespace FreecraftCore
 		public Expansions AccountExpansion { get; internal set; }
 
 		public AuthenticateSessionResponse()
+			: base(NetworkOperationCode.SMSG_AUTH_RESPONSE)
 		{
 			//TODO: If we ever run a server add a ctor
 		}

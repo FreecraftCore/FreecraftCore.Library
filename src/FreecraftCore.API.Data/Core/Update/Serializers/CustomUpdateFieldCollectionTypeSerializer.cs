@@ -13,27 +13,19 @@ namespace FreecraftCore
 	/// The custom FrecraftCore type serializer for the update field collection
 	/// type.
 	/// </summary>
-	public sealed class CustomUpdateFieldCollectionTypeSerializer : SimpleTypeSerializerStrategy<UpdateFieldValueCollection>
+	public sealed class CustomUpdateFieldCollectionTypeSerializer : StatelessTypeSerializerStrategy<CustomUpdateFieldCollectionTypeSerializer, UpdateFieldValueCollection>
 	{
-		/// <inheritdoc />
-		public override SerializationContextRequirement ContextRequirement { get; } = SerializationContextRequirement.Contextless;
-
-		public CustomUpdateFieldCollectionTypeSerializer()
-		{
-			
-		}
-
-		/// <inheritdoc />
-		public override UpdateFieldValueCollection Read(IWireStreamReaderStrategy source)
+		public override UpdateFieldValueCollection Read(Span<byte> buffer, ref int offset)
 		{
 			//Update fields are sent with an inital byte size
-			byte size = source.ReadByte();
+			byte size = BytePrimitiveSerializerStrategy.Instance.Read(buffer, ref offset);
 
 			if(size == 0)
 				return new UpdateFieldValueCollection(new WireReadyBitArray(0), Array.Empty<byte>());
 
 			//TODO: Reduce allocation somehow.
-			byte[] bytes = source.ReadBytes(size * sizeof(int));
+			byte[] bytes = buffer.Slice(offset, size * sizeof(int)).ToArray();
+			offset += size * sizeof(int);
 
 			WireReadyBitArray mask = new WireReadyBitArray(bytes);
 
@@ -43,28 +35,17 @@ namespace FreecraftCore
 
 			AssertSizeIsCorrect(mask, updateValueSize);
 
+			//TODO: Reduce allocations somehow.
 			//Once we have the mask AND the bytes we can construct the update values
-			byte[] updateValueBytes = source.ReadBytes(updateValueSize * sizeof(int));
+			byte[] updateValueBytes = buffer.Slice(offset, updateValueSize * sizeof(int)).ToArray();
+			offset += updateValueSize * sizeof(int);
 
 			return new UpdateFieldValueCollection(mask, updateValueBytes);
 		}
 
-		[Conditional("DEBUG")]
-		private static void AssertSizeIsCorrect(WireReadyBitArray mask, int updateValueSize)
+		public override void Write(UpdateFieldValueCollection value, Span<byte> buffer, ref int offset)
 		{
-			int count = 0;
-			for(int i = 0; i < mask.Length; i++)
-				if(mask[i])
-					count++;
-
-			if(updateValueSize != count)
-				throw new InvalidOperationException($"Failed Standford: {updateValueSize} i: {count}");
-		}
-
-		/// <inheritdoc />
-		public override void Write(UpdateFieldValueCollection value, IWireStreamWriterStrategy dest)
-		{
-			throw new NotImplementedException($"TODO: Reimplement UpdateCollection write.");
+			throw KnownIncompleteSerializationException.Create<UpdateFieldValueCollection>($"TODO: Reimplement UpdateCollection write.");
 			/*//TODO: Major performance gains if we can avoid allocations here. MAJOR!!
 			//The size must be equal to the length divided by 8 bits (1 byte) but we do not include the
 			//remainder from a modular division. The reason for this is it's always sent as 4 byte chunks from
@@ -84,52 +65,16 @@ namespace FreecraftCore
 			dest.Write(value.UpdateDiffValues);*/
 		}
 
-		/// <inheritdoc />
-		public override async Task WriteAsync(UpdateFieldValueCollection value, IWireStreamWriterStrategyAsync dest)
+		[Conditional("DEBUG")]
+		private static void AssertSizeIsCorrect(WireReadyBitArray mask, int updateValueSize)
 		{
-			throw new NotImplementedException($"TODO: Reimplement UpdateCollection write.");
-			/*//TODO: Major performance gains if we can avoid allocations here. MAJOR!!
-			//The size must be equal to the length divided by 8 bits (1 byte) but we do not include the
-			//remainder from a modular division. The reason for this is it's always sent as 4 byte chunks from
-			//Trinitycore and the size is always in terms of an int array
-			byte[] bitmask = new byte[value.UpdateMask.Count / 8];
+			int count = 0;
+			for(int i = 0; i < mask.Length; i++)
+				if(mask[i])
+					count++;
 
-			((ICollection)value.UpdateMask).CopyTo(bitmask, 0);
-
-			byte size = (byte)(bitmask.Length / sizeof(int));
-
-			//Write the size as if it were an int array first
-			await dest.WriteAsync(size);
-			await dest.WriteAsync(bitmask);
-
-			//We must also write the update values
-			await dest.WriteAsync(value.UpdateDiffValues);*/
-		}
-
-		/// <inheritdoc />
-		public override async Task<UpdateFieldValueCollection> ReadAsync(IWireStreamReaderStrategyAsync source)
-		{
-			//Update fields are sent with an inital byte size
-			byte size = await source.ReadByteAsync();
-
-			if(size == 0)
-				return new UpdateFieldValueCollection(new WireReadyBitArray(0), Array.Empty<byte>());
-
-			//TODO: Reduce allocation somehow.
-			byte[] bytes = await source.ReadBytesAsync(size * sizeof(int));
-
-			WireReadyBitArray mask = new WireReadyBitArray(bytes);
-
-			//We know how many bytes the bitarray is suppose to be
-			//but to know how many values are read we need to compute the bit size
-			int updateValueSize = GetCardinality(mask.InternalArray);
-
-			AssertSizeIsCorrect(mask, updateValueSize);
-
-			//Once we have the mask AND the bytes we can construct the update values
-			byte[] updateValueBytes = await source.ReadBytesAsync(updateValueSize * sizeof(int));
-
-			return new UpdateFieldValueCollection(mask, updateValueBytes);
+			if(updateValueSize != count)
+				throw new InvalidOperationException($"Failed Standford: {updateValueSize} i: {count}");
 		}
 
 		//See: http://graphics.stanford.edu/~seander/bithacks.html#CountBitsSetParallel

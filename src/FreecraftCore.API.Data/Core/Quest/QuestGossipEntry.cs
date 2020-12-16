@@ -40,7 +40,7 @@ namespace FreecraftCore
 			QuestTitle = questTitle;
 		}
 
-		internal QuestGossipEntry()
+		public QuestGossipEntry()
 		{
 			
 		}

@@ -21,7 +21,7 @@ namespace FreecraftCore
 			SocketContent = socketContent;
 		}
 
-		protected SocketEntry()
+		public SocketEntry()
 		{
 			
 		}

@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -12,7 +12,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_GOSSIP_MESSAGE)]
-	public sealed class SMSG_GOSSIP_MESSAGE_Payload : GamePacketPayload
+	public sealed partial class SMSG_GOSSIP_MESSAGE_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// The GUID of the gossip source.
@@ -34,7 +34,7 @@ namespace FreecraftCore
 		[WireMember(3)]
 		public int TitleTextId { get; internal set; }
 
-		[SendSize(SendSizeAttribute.SizeType.Int32)]
+		[SendSize(PrimitiveSizeType.Int32)]
 		[WireMember(4)]
 		internal GossipMenuItem[] _GossipOptions { get; set; }
 
@@ -44,7 +44,7 @@ namespace FreecraftCore
 		[NotMapped]
 		public IEnumerable<GossipMenuItem> GossipOptions => _GossipOptions;
 
-		[SendSize(SendSizeAttribute.SizeType.Int32)]
+		[SendSize(PrimitiveSizeType.Int32)]
 		[WireMember(5)]
 		internal QuestGossipEntry[] _QuestOptions { get; set; }
 
@@ -52,6 +52,7 @@ namespace FreecraftCore
 		public IEnumerable<QuestGossipEntry> QuestOptions => _QuestOptions;
 
 		public SMSG_GOSSIP_MESSAGE_Payload([NotNull] ObjectGuid gossipSource, int menuId, int titleTextId, [NotNull] GossipMenuItem[] gossipOptions, [NotNull] QuestGossipEntry[] questOptions)
+			: this()
 		{
 			GossipSource = gossipSource ?? throw new ArgumentNullException(nameof(gossipSource));
 			MenuId = menuId;
@@ -63,7 +64,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal SMSG_GOSSIP_MESSAGE_Payload()
+		public SMSG_GOSSIP_MESSAGE_Payload()
+			: base(NetworkOperationCode.SMSG_GOSSIP_MESSAGE)
 		{
 
 		}

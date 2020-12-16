@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 namespace FreecraftCore
 {
 	[WireDataContract]
-	public sealed class WhisperPlayerChatMessage : PlayerChatMessage
+	public sealed partial class WhisperPlayerChatMessage : PlayerChatMessage
 	{
 		/// <summary>
 		/// The targeted reciever of the message.
@@ -32,7 +32,7 @@ namespace FreecraftCore
 			Message = message;
 		}
 
-		protected WhisperPlayerChatMessage()
+		public WhisperPlayerChatMessage()
 		{
 			
 		}

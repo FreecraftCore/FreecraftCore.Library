@@ -28,7 +28,7 @@ namespace FreecraftCore
 			UnkShort = unkShort;
 		}
 
-		protected InitialSpellData()
+		public InitialSpellData()
 		{
 
 		}

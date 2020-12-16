@@ -288,7 +288,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FreecraftCore.Serializer">
-      <Version>3.0.39</Version>
+      <Version>4.0.39</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
@@ -303,10 +303,6 @@
     <ProjectReference Include="..\..\src\FreecraftCore.Packet.Common\FreecraftCore.Packet.Common.csproj">
       <Project>{EB22A6AE-5098-40CD-9A58-EF989075FB22}</Project>
       <Name>FreecraftCore.Packet.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\FreecraftCore.Packet.Game.Stubs\FreecraftCore.Packet.Game.Stubs.csproj">
-      <Project>{AD87FE80-85A6-4F6F-998F-5FDAAE870D50}</Project>
-      <Name>FreecraftCore.Packet.Game.Stubs</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\FreecraftCore.Packet.Game\FreecraftCore.Packet.Game.csproj">
       <Project>{E7203CA7-1D14-4322-8062-1F72FCDD3EC5}</Project>

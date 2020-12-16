@@ -61,7 +61,7 @@ namespace FreecraftCore
 			_Bags = bags ?? throw new ArgumentNullException(nameof(bags));
 		}
 
-		protected CharacterScreenCharacter()
+		public CharacterScreenCharacter()
 		{
 			
 		}

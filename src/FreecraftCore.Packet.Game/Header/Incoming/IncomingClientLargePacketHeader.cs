@@ -8,13 +8,13 @@ namespace FreecraftCore
 	/// Large packet header.
 	/// </summary>
 	[WireDataContract]
-	public class IncomingClientLargePacketHeader : IncomingClientPacketHeader
+	public partial class IncomingClientLargePacketHeader : IncomingClientPacketHeader
 	{
 		//[a][bb]
 		//See: https://github.com/FreecraftCore/FreecraftCore/blob/master/docs/WorldHeader.md
 		[KnownSize(3)]
 		[WireMember(1)]
-		private byte[] encodedSizeBytes;
+		internal byte[] encodedSizeBytes;
 
 		//[cc]
 		//See: https://github.com/FreecraftCore/FreecraftCore/blob/master/docs/WorldHeader.md

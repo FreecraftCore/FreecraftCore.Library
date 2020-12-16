@@ -52,7 +52,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected MonsterMoveInfo()
+		public MonsterMoveInfo()
 		{
 			
 		}

@@ -19,9 +19,7 @@ namespace FreecraftCore
 		public override IEnumerable<Type> BuildSerializableTypes()
 		{
 			//Then we want to register DTOs for unknown
-			return GamePacketStubMetadataMarker.GamePacketPayloadStubTypes
-				.Where(t => GamePacketMetadataMarker.UnimplementedOperationCodes.Value.Contains(AttributesUtil.GetAttribute<GamePayloadOperationCodeAttribute>((Type)t).OperationCode))
-				.Concat(GamePacketMetadataMarker.SerializableTypes)
+			return GamePacketMetadataMarker.SerializableTypes
 				.ToArray();
 		}
 	}

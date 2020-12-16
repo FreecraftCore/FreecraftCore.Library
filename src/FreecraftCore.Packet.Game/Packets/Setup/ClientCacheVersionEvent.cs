@@ -8,7 +8,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_CLIENTCACHE_VERSION)]
-	public sealed class ClientCacheVersionEvent : GamePacketPayload
+	public sealed partial class ClientCacheVersionEvent : GamePacketPayload
 	{
 		/// <inheritdoc />
 		public override bool isValid => true;
@@ -20,7 +20,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected ClientCacheVersionEvent()
+		public ClientCacheVersionEvent()
+			: base(NetworkOperationCode.SMSG_CLIENTCACHE_VERSION)
 		{
 			
 		}

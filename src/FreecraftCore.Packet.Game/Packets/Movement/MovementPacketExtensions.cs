@@ -16,7 +16,7 @@ namespace FreecraftCore
 		{
 			if (payload == null) throw new ArgumentNullException(nameof(payload));
 
-			switch (payload.GetOperationCode())
+			switch (payload.OperationCode)
 			{
 				case NetworkOperationCode.CMSG_MOVE_FALL_RESET:
 				case NetworkOperationCode.CMSG_MOVE_SET_FLY:

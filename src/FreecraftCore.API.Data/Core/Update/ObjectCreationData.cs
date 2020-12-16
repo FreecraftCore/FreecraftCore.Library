@@ -40,7 +40,7 @@ namespace FreecraftCore
 			ObjectValuesCollection = objectValuesCollection;
 		}
 
-		protected ObjectCreationData()
+		public ObjectCreationData()
 		{
 			
 		}

@@ -8,7 +8,7 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_INITIAL_SPELLS)]
-	public sealed class SMSG_INITIAL_SPELLS_Payload : GamePacketPayload
+	public sealed partial class SMSG_INITIAL_SPELLS_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// The initial spell data and cooldown data.
@@ -19,11 +19,13 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SMSG_INITIAL_SPELLS_Payload(InitialSpellDataBlock<int> data)
+			: this()
 		{
 			Data = data;
 		}
 
-		protected SMSG_INITIAL_SPELLS_Payload()
+		public SMSG_INITIAL_SPELLS_Payload()
+			: base(NetworkOperationCode.SMSG_INITIAL_SPELLS)
 		{
 			
 		}

@@ -26,7 +26,7 @@ namespace FreecraftCore
 			OperationCode = authenticationOpCode;
 		}
 
-		protected AuthenticationPacketHeader()
+		public AuthenticationPacketHeader()
 		{
 			//for serialization
 		}

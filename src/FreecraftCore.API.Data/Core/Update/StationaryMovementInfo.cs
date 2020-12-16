@@ -18,7 +18,7 @@ namespace FreecraftCore
 			Orientation = orientation;
 		}
 
-		protected StationaryMovementInfo()
+		public StationaryMovementInfo()
 		{
 			
 		}

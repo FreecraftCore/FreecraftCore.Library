@@ -31,7 +31,7 @@ namespace FreecraftCore
 			EnchantDisplayId = enchantDisplayId;
 		}
 
-		protected CharacterScreenItem()
+		public CharacterScreenItem()
 		{
 			//serializer ctor
 		}

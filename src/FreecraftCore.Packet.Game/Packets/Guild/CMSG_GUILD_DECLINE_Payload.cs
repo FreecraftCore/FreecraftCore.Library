@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_GUILD_DECLINE)]
-	public sealed class CMSG_GUILD_DECLINE_Payload : GamePacketPayload
+	public sealed partial class CMSG_GUILD_DECLINE_Payload : GamePacketPayload
 	{
 		//Empty, just means it's declined.
 
@@ -19,6 +19,7 @@ namespace FreecraftCore
 		/// Default Serializer Ctor.
 		/// </summary>
 		public CMSG_GUILD_DECLINE_Payload()
+			: base(NetworkOperationCode.CMSG_GUILD_DECLINE)
 		{
 
 		}

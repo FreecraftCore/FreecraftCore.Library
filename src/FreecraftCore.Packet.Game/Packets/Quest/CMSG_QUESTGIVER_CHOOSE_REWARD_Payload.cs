@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -13,7 +13,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_QUESTGIVER_CHOOSE_REWARD)]
-	public sealed class CMSG_QUESTGIVER_CHOOSE_REWARD_Payload : GamePacketPayload
+	public sealed partial class CMSG_QUESTGIVER_CHOOSE_REWARD_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// The <see cref="ObjectGuid"/> of the quest giver.
@@ -35,6 +35,7 @@ namespace FreecraftCore
 		public int RewardSlot { get; internal set; }
 
 		public CMSG_QUESTGIVER_CHOOSE_REWARD_Payload([NotNull] ObjectGuid questGiver, int questId, int rewardSlot)
+			: this()
 		{
 			if (questId <= 0) throw new ArgumentOutOfRangeException(nameof(questId));
 			if (rewardSlot < 0) throw new ArgumentOutOfRangeException(nameof(rewardSlot));
@@ -47,7 +48,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal CMSG_QUESTGIVER_CHOOSE_REWARD_Payload()
+		public CMSG_QUESTGIVER_CHOOSE_REWARD_Payload()
+			: base(NetworkOperationCode.CMSG_QUESTGIVER_CHOOSE_REWARD)
 		{
 
 		}

@@ -26,7 +26,7 @@ namespace FreecraftCore
 			ResistId = resistId;
 		}
 
-		protected ItemDamageDefinition()
+		public ItemDamageDefinition()
 		{
 			
 		}

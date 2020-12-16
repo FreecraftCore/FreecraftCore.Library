@@ -134,7 +134,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected LocalizedStringDBC()
+		public LocalizedStringDBC()
 		{
 
 		}

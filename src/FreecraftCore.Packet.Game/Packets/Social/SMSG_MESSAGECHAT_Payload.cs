@@ -11,7 +11,7 @@ namespace FreecraftCore
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_MESSAGECHAT)]
 	[ProtocolGrouping(ProtocolCode.Game)] //TODO: Change this protocol to something more specific
-	public class SMSG_MESSAGECHAT_Payload : GamePacketPayload
+	public partial class SMSG_MESSAGECHAT_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// The header details of the message.
@@ -129,6 +129,7 @@ namespace FreecraftCore
 		//TODO: Parameter validation
 		/// <inheritdoc />
 		public SMSG_MESSAGECHAT_Payload([NotNull] NetworkChatMessageHeader messageHeader, [NotNull] NetworkChatMessageFooter messageFooter, [NotNull] NetworkChatWhisperMessageDetails whisperMessageDetails)
+			: this()
 		{
 			MessageHeader = messageHeader ?? throw new ArgumentNullException(nameof(messageHeader));
 			WhisperMessageDetails = whisperMessageDetails ?? throw new ArgumentNullException(nameof(whisperMessageDetails));
@@ -136,6 +137,7 @@ namespace FreecraftCore
 		}
 
 		public SMSG_MESSAGECHAT_Payload([NotNull] NetworkChatMessageHeader messageHeader, [NotNull] NetworkChatMessageFooter messageFooter, [NotNull] NetworkChatCreatureMessageDetails creatureMessageDetails)
+			: this()
 		{
 			MessageHeader = messageHeader ?? throw new ArgumentNullException(nameof(messageHeader));
 			CreatureMessageDetails = creatureMessageDetails ?? throw new ArgumentNullException(nameof(creatureMessageDetails));
@@ -143,6 +145,7 @@ namespace FreecraftCore
 		}
 
 		public SMSG_MESSAGECHAT_Payload([NotNull] NetworkChatMessageHeader messageHeader, [NotNull] NetworkChatMessageFooter messageFooter, [NotNull] NetworkChatChannelMessageDetails channelMessageDetails)
+			: this()
 		{
 			MessageHeader = messageHeader ?? throw new ArgumentNullException(nameof(messageHeader));
 			ChannelMessageDetails = channelMessageDetails ?? throw new ArgumentNullException(nameof(channelMessageDetails));
@@ -150,13 +153,15 @@ namespace FreecraftCore
 		}
 
 		public SMSG_MESSAGECHAT_Payload([NotNull] NetworkChatMessageHeader messageHeader, [NotNull] NetworkChatMessageFooter messageFooter, [NotNull] NetworkChatDefaultMessageDetails defaultMessageDetails)
+			: this()
 		{
 			MessageHeader = messageHeader ?? throw new ArgumentNullException(nameof(messageHeader));
 			DefaultMessageDetails = defaultMessageDetails;
 			MessageFooter = messageFooter ?? throw new ArgumentNullException(nameof(messageFooter));
 		}
 
-		protected SMSG_MESSAGECHAT_Payload()
+		public SMSG_MESSAGECHAT_Payload()
+			: base(NetworkOperationCode.SMSG_MESSAGECHAT)
 		{
 			//serializer ctor
 		}

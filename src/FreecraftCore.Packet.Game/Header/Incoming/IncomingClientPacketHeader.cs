@@ -9,9 +9,9 @@ namespace FreecraftCore
 	/// The header for packets coming into the client.
 	/// </summary>
 	[DefaultChild(typeof(IncomingClientSmallPacketHeader))] //if it doesn't contain the 0x80 flag it is a small packet
-	[WireDataContractBaseTypeByFlags(0x80, typeof(IncomingClientLargePacketHeader))] //Jackpoz bot shows that if the first byte has a 0x80 flag then it is a big packet
-	[WireDataContract(WireDataContractAttribute.KeyType.Byte, InformationHandlingFlags.DontConsumeRead)] //Jackpoz shows that first byte indicates length size.
-	public abstract class IncomingClientPacketHeader : IGamePacketHeader, ISerializationEventListener, IPacketHeader
+	[WireDataContractBaseType(1, typeof(IncomingClientLargePacketHeader))] //Jackpoz bot shows that if the first byte has a 0x80 flag then it is a big packet
+	[WireDataContract(PrimitiveSizeType.Bit)] //Jackpoz shows that first byte indicates length size.
+	public abstract partial class IncomingClientPacketHeader : IGamePacketHeader, ISerializationEventListener, IPacketHeader
 	{
 		/// <inheritdoc />
 		public abstract int HeaderSize { get; }

@@ -8,12 +8,13 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_SET_SELECTION)]
-	public sealed class CMSG_SET_SELECTION_Payload : GamePacketPayload
+	public sealed partial class CMSG_SET_SELECTION_Payload : GamePacketPayload
 	{
 		[WireMember(1)]
 		public ObjectGuid Target { get; internal set; }
 
 		public CMSG_SET_SELECTION_Payload([NotNull] ObjectGuid target)
+			: this()
 		{
 			Target = target ?? throw new ArgumentNullException(nameof(target));
 		}
@@ -21,7 +22,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal CMSG_SET_SELECTION_Payload()
+		public CMSG_SET_SELECTION_Payload()
+			: base(NetworkOperationCode.CMSG_SET_SELECTION)
 		{
 			
 		}

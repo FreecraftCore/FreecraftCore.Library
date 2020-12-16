@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace FreecraftCore
 {
 	[WireDataContract]
-	[IncludeCustomTypeSerializer(typeof(LinearPathMoveInfoTypeSerializer))]
+	[CustomTypeSerializer(typeof(LinearPathMoveInfoTypeSerializer))]
 	public sealed class LinearPathMoveInfo
 	{
 		/// <summary>

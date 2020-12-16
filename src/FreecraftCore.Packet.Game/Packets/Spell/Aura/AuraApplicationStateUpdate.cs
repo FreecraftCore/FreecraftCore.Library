@@ -126,7 +126,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal AuraApplicationStateUpdate()
+		public AuraApplicationStateUpdate()
 		{
 			CasterGuid = PackedGuid.Empty;
 		}

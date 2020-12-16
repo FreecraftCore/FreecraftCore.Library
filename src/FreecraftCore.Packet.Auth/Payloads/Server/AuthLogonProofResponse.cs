@@ -7,7 +7,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[AuthenticationServerPayload(AuthOperationCode.AUTH_LOGON_PROOF)]
-	public class AuthLogonProofResponse : AuthenticationServerPayload
+	public partial class AuthLogonProofResponse : AuthenticationServerPayload
 	{
 		//TODO: Implement
 		public override bool isValid { get; } = true;
@@ -29,11 +29,13 @@ namespace FreecraftCore
 		//TODO: Make better ctor
 		/// <inheritdoc />
 		public AuthLogonProofResponse(LogonProofResult proofResult)
+			: this()
 		{
 			ProofResult = proofResult;
 		}
 
 		public AuthLogonProofResponse()
+			: base(AuthOperationCode.AUTH_LOGON_PROOF)
 		{
 
 		}

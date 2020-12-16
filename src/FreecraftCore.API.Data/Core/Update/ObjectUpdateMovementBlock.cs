@@ -5,7 +5,7 @@ namespace FreecraftCore
 {
 	//See: https://github.com/TrinityCore/WowPacketParser/blob/master/WowPacketParser/Parsing/Parsers/UpdateHandler.cs#L2527
 	[WireDataContract]
-	public sealed class ObjectUpdateMovementBlock : ObjectUpdateBlock
+	public sealed partial class ObjectUpdateMovementBlock : ObjectUpdateBlock
 	{
 		//ClientVersion.AddedInVersion(ClientVersionBuild.V3_1_2_9901). Pre 3.1 it was a non-packed guid
 		[WireMember(1)]
@@ -24,7 +24,7 @@ namespace FreecraftCore
 			MovementData = movementData;
 		}
 
-		protected ObjectUpdateMovementBlock()
+		public ObjectUpdateMovementBlock()
 		{
 			
 		}

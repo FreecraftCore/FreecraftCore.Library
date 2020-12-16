@@ -8,7 +8,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_REALM_SPLIT)]
-	public sealed class RealmSplitRequest : GamePacketPayload
+	public sealed partial class RealmSplitRequest : GamePacketPayload
 	{
 		/// <summary>
 		/// Unknown data. Trinitycore has a 4 byte field here.
@@ -18,11 +18,13 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public RealmSplitRequest(int unk)
+			: this()
 		{
 			Unk = unk;
 		}
 
 		public RealmSplitRequest()
+			: base(NetworkOperationCode.CMSG_REALM_SPLIT)
 		{
 			
 		}

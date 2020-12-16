@@ -25,7 +25,7 @@ namespace FreecraftCore
 		/// The DBC entries.
 		/// Hidden/private to prevent mutability.
 		/// </summary>
-		[SendSize(SendSizeAttribute.SizeType.Int32)]
+		[SendSize(PrimitiveSizeType.Int32)]
 		[WireMember(1)]
 		internal TEntryType[] Entries { get; set; } //setter for serializer purposes
 

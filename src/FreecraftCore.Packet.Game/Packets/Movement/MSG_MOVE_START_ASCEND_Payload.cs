@@ -8,7 +8,7 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.MSG_MOVE_START_ASCEND)]
-	public sealed class MSG_MOVE_START_ASCEND_Payload : GamePacketPayload, IPlayerMovementPayload<MovementInfo, MovementFlag, PackedGuid>
+	public sealed partial class MSG_MOVE_START_ASCEND_Payload : GamePacketPayload, IPlayerMovementPayload<MovementInfo, MovementFlag, PackedGuid>
 	{
 		//Not optional, always sent in 3.3.5
 		/// <inheritdoc />
@@ -22,11 +22,13 @@ namespace FreecraftCore
 		public MovementInfo MoveInfo { get; internal set; }
 
 		public MSG_MOVE_START_ASCEND_Payload([NotNull] PackedGuid movementGuid, [NotNull] MovementInfo moveInfo)
+			: this()
 		{
 			MovementGuid = movementGuid ?? throw new ArgumentNullException(nameof(movementGuid)); MoveInfo = moveInfo ?? throw new ArgumentNullException(nameof(moveInfo));
 		}
 
-		protected MSG_MOVE_START_ASCEND_Payload()
+		public MSG_MOVE_START_ASCEND_Payload()
+			: base(NetworkOperationCode.MSG_MOVE_START_ASCEND)
 		{
 
 		}

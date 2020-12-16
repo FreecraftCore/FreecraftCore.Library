@@ -37,7 +37,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected SpellVisualData()
+		public SpellVisualData()
 		{
 			
 		}

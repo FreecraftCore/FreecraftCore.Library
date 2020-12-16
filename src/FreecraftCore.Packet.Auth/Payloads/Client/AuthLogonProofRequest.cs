@@ -6,7 +6,7 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[AuthenticationClientPayload(AuthOperationCode.AUTH_LOGON_PROOF)] //TODO: Figure out how to support linking with the limited information.
-	public class AuthLogonProofRequest : AuthenticationClientPayload
+	public partial class AuthLogonProofRequest : AuthenticationClientPayload
 	{
 		//TODO: Implement
 		public override bool isValid { get; } = true;
@@ -49,22 +49,17 @@ namespace FreecraftCore
 		internal byte securityFlags = 0;
 
 		public AuthLogonProofRequest([NotNull] byte[] providedA, [NotNull] byte[] m1Hash)
+			: this()
 		{
 			if (providedA == null) throw new ArgumentNullException(nameof(providedA));
 			if (m1Hash == null) throw new ArgumentNullException(nameof(m1Hash));
-
-			//TODO: Redo model validation logic
-			/*ThrowIfInvalidLength(nameof(providedA),
-				() => GetType().GetTypeInfo().GetMember(nameof(A)).First().GetCustomAttribute<KnownSizeAttribute>(true).KnownSize, providedA.Length);
-
-			ThrowIfInvalidLength(nameof(m1Hash),
-				() => GetType().GetTypeInfo().GetMember(nameof(M1)).First().GetCustomAttribute<KnownSizeAttribute>(true).KnownSize, m1Hash.Length);*/
 
 			A = providedA;
 			M1 = m1Hash;
 		}
 
 		public AuthLogonProofRequest()
+			: base(AuthOperationCode.AUTH_LOGON_PROOF)
 		{
 
 		}

@@ -7,7 +7,7 @@ namespace FreecraftCore
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_MESSAGECHAT)]
 	[ProtocolGrouping(ProtocolCode.Game)] //TODO: Change this protocol to something more specific
-	public class ChatMessageRequest : GamePacketPayload
+	public partial class ChatMessageRequest : GamePacketPayload
 	{
 		/// <inheritdoc />
 		public override bool isValid { get; }
@@ -19,13 +19,15 @@ namespace FreecraftCore
 		public PlayerChatMessage Message { get; internal set; }
 
 		public ChatMessageRequest([NotNull] PlayerChatMessage message)
+			: this()
 		{
 			if (message == null) throw new ArgumentNullException(nameof(message));
 
 			Message = message;
 		}
 
-		protected ChatMessageRequest()
+		public ChatMessageRequest()
+			: base(NetworkOperationCode.CMSG_MESSAGECHAT)
 		{
 			
 		}

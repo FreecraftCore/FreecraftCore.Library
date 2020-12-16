@@ -35,7 +35,7 @@ namespace FreecraftCore
 			MissReason = missReason;
 		}
 
-		protected SpellMissInfo()
+		public SpellMissInfo()
 		{
 			
 		}

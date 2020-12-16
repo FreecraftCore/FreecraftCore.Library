@@ -8,7 +8,7 @@ namespace FreecraftCore
 	/// Used when an object is being copied or respawned.
 	/// </summary>
 	[WireDataContract]
-	public sealed class ObjectUpdateCreateObject2Block : ObjectUpdateBlock, IObjectCreationBlock
+	public sealed partial class ObjectUpdateCreateObject2Block : ObjectUpdateBlock, IObjectCreationBlock
 	{
 		/// <summary>
 		/// The creation data.
@@ -28,7 +28,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected ObjectUpdateCreateObject2Block()
+		public ObjectUpdateCreateObject2Block()
 		{
 
 		}

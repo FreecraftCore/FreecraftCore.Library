@@ -33,7 +33,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal QuestGreeting()
+		public QuestGreeting()
 		{
 			
 		}

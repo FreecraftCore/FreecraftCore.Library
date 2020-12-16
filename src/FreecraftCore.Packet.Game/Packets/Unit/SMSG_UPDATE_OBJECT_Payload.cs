@@ -6,7 +6,7 @@ namespace FreecraftCore
 {
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_UPDATE_OBJECT)]
-	public sealed class SMSG_UPDATE_OBJECT_Payload : GamePacketPayload, IObjectUpdatePayload
+	public sealed partial class SMSG_UPDATE_OBJECT_Payload : GamePacketPayload, IObjectUpdatePayload
 	{
 		/// <summary>
 		/// The update blocks.
@@ -15,11 +15,13 @@ namespace FreecraftCore
 		public UpdateBlockCollection UpdateBlocks { get; internal set; }
 
 		public SMSG_UPDATE_OBJECT_Payload([NotNull] UpdateBlockCollection updateBlocks)
+			: this()
 		{
 			UpdateBlocks = updateBlocks ?? throw new ArgumentNullException(nameof(updateBlocks));
 		}
 
-		protected SMSG_UPDATE_OBJECT_Payload()
+		public SMSG_UPDATE_OBJECT_Payload()
+			: base(NetworkOperationCode.SMSG_UPDATE_OBJECT)
 		{
 			
 		}

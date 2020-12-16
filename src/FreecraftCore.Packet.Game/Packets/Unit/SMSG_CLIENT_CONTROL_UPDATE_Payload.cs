@@ -12,7 +12,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_CLIENT_CONTROL_UPDATE)]
-	public sealed class SMSG_CLIENT_CONTROL_UPDATE_Payload : GamePacketPayload
+	public sealed partial class SMSG_CLIENT_CONTROL_UPDATE_Payload : GamePacketPayload
 	{
 		//Both 1.12.1 and 3.3.5 send a packed guid.
 		/// <summary>
@@ -29,6 +29,7 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SMSG_CLIENT_CONTROL_UPDATE_Payload([NotNull] PackedGuid controlledObject, bool isEnabled)
+			: this()
 		{
 			ControlledObject = controlledObject ?? throw new ArgumentNullException(nameof(controlledObject));
 			IsEnabled = isEnabled;
@@ -37,7 +38,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer
 		/// </summary>
-		protected SMSG_CLIENT_CONTROL_UPDATE_Payload()
+		public SMSG_CLIENT_CONTROL_UPDATE_Payload()
+			: base(NetworkOperationCode.SMSG_CLIENT_CONTROL_UPDATE)
 		{
 			
 		}

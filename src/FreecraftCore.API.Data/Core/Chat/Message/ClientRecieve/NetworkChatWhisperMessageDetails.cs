@@ -22,7 +22,7 @@ namespace FreecraftCore
 			AddressingDetails = addressingDetails ?? throw new ArgumentNullException(nameof(addressingDetails));
 		}
 
-		protected NetworkChatWhisperMessageDetails()
+		public NetworkChatWhisperMessageDetails()
 		{
 			
 		}

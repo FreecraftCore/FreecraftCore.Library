@@ -7,25 +7,17 @@ using Reinterpret.Net;
 
 namespace FreecraftCore
 {
-	public sealed class LinearPathMoveInfoTypeSerializer : SimpleTypeSerializerStrategy<LinearPathMoveInfo>
+	public sealed class LinearPathMoveInfoTypeSerializer : StatelessTypeSerializerStrategy<LinearPathMoveInfoTypeSerializer, LinearPathMoveInfo>
 	{
-		/// <inheritdoc />
-		public override SerializationContextRequirement ContextRequirement { get; } = SerializationContextRequirement.Contextless;
-
-		public LinearPathMoveInfoTypeSerializer()
+		public override LinearPathMoveInfo Read(Span<byte> buffer, ref int offset)
 		{
-			
-		}
+			int lastIndex = GenericTypePrimitiveSerializerStrategy<int>.Instance.Read(buffer, ref offset);
 
-		/// <inheritdoc />
-		public override LinearPathMoveInfo Read(IWireStreamReaderStrategy source)
-		{
-			int lastIndex = source.ReadBytes(sizeof(int)).Reinterpret<int>();
+			float lastPointX = GenericTypePrimitiveSerializerStrategy<float>.Instance.Read(buffer, ref offset);
+			float lastPointY = GenericTypePrimitiveSerializerStrategy<float>.Instance.Read(buffer, ref offset);
+			float lastPointZ = GenericTypePrimitiveSerializerStrategy<float>.Instance.Read(buffer, ref offset);
 
-			byte[] lastPointBytes = source.ReadBytes(sizeof(float) * 3);
-
-			Vector3<float> lastPoint = new Vector3<float>(lastPointBytes.Reinterpret<float>(),
-				lastPointBytes.Reinterpret<float>(sizeof(float)), lastPointBytes.Reinterpret<float>(sizeof(float) * 2));
+			Vector3<float> lastPoint = new Vector3<float>(lastPointX, lastPointY, lastPointZ);
 
 			/*// can be used in SMSG_MONSTER_MOVE opcode
 			void appendPackXYZ(float x, float y, float z)
@@ -46,11 +38,11 @@ namespace FreecraftCore
 				data << TaggedPosition<Position::PackedXYZ>(offset.x, offset.y, offset.z);
 			}*/
 			Vector3<float>[] middlePoints = new Vector3<float>[lastIndex - 1];
-			if (lastIndex > 1)
+			if(lastIndex > 1)
 			{
-				for (int i = 1; i < lastIndex; ++i)
+				for(int i = 1; i < lastIndex; ++i)
 				{
-					int packedFloats = source.ReadBytes(sizeof(int)).Reinterpret<int>();
+					int packedFloats = GenericTypePrimitiveSerializerStrategy<int>.Instance.Read(buffer, ref offset);
 
 					float x = ((packedFloats & 0x7FF) << 21 >> 21) * 0.25f;
 					float y = ((((packedFloats >> 11) & 0x7FF) << 21) >> 21) * 0.25f;
@@ -63,39 +55,19 @@ namespace FreecraftCore
 			return new LinearPathMoveInfo(lastIndex, lastPoint, middlePoints);
 		}
 
-
-		/// <inheritdoc />
-		public override void Write(LinearPathMoveInfo value, IWireStreamWriterStrategy dest)
+		public override void Write(LinearPathMoveInfo value, Span<byte> buffer, ref int offset)
 		{
 			if(value == null)
 				return;
 
-			dest.Write(value.LastIndex.Reinterpret());
+			GenericTypePrimitiveSerializerStrategy<int>.Instance.Write(value.LastIndex, buffer, ref offset);
 
-			dest.Write(value.FinalPosition.X.Reinterpret());
-			dest.Write(value.FinalPosition.Y.Reinterpret());
-			dest.Write(value.FinalPosition.Z.Reinterpret());
+			GenericTypePrimitiveSerializerStrategy<float>.Instance.Write(value.FinalPosition.X, buffer, ref offset);
+			GenericTypePrimitiveSerializerStrategy<float>.Instance.Write(value.FinalPosition.Y, buffer, ref offset);
+			GenericTypePrimitiveSerializerStrategy<float>.Instance.Write(value.FinalPosition.Z, buffer, ref offset);
 
-			if(value.LastIndex > 1 && value.SplineMiddlePoints != null)
-				throw new NotImplementedException($"TODO: Implement mid points.");
-		}
-
-		/// <inheritdoc />
-		public override async Task WriteAsync(LinearPathMoveInfo value, IWireStreamWriterStrategyAsync dest)
-		{
-			await dest.WriteAsync(value.LastIndex.Reinterpret());
-
-			await dest.WriteAsync(value.FinalPosition.X.Reinterpret());
-			await dest.WriteAsync(value.FinalPosition.Y.Reinterpret());
-			await dest.WriteAsync(value.FinalPosition.Z.Reinterpret());
-
-			throw new NotImplementedException($"TODO: Implement mid points.");
-		}
-
-		/// <inheritdoc />
-		public override Task<LinearPathMoveInfo> ReadAsync(IWireStreamReaderStrategyAsync source)
-		{
-			throw new NotImplementedException("TODO: Implement async LinearPathMoveInfo");
+			if (value.LastIndex > 1 && value.SplineMiddlePoints != null)
+				throw KnownIncompleteSerializationException.Create<LinearPathMoveInfo>($"TODO: Implement mid points writing.");
 		}
 	}
 }

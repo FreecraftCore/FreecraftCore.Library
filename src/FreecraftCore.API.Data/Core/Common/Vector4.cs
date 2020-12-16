@@ -69,7 +69,7 @@ namespace FreecraftCore
 			W = w;
 		}
 
-		private Vector4()
+		public Vector4()
 		{
 
 		}

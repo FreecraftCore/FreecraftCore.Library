@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_QUESTGIVER_QUEST_COMPLETE)]
-	public sealed class SMSG_QUESTGIVER_QUEST_COMPLETE_Payload : GamePacketPayload
+	public sealed partial class SMSG_QUESTGIVER_QUEST_COMPLETE_Payload : GamePacketPayload
 	{
 		[WireMember(1)]
 		public int QuestId { get; internal set; }
@@ -25,6 +25,7 @@ namespace FreecraftCore
 		//TODO: There is more stuff here, but not implementing it at this time. See Player::SendQuestReward
 
 		public SMSG_QUESTGIVER_QUEST_COMPLETE_Payload(int questId, int experienceRewarded, int moneyRewarded)
+			: this()
 		{
 			if (questId <= 0) throw new ArgumentOutOfRangeException(nameof(questId));
 
@@ -36,7 +37,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal SMSG_QUESTGIVER_QUEST_COMPLETE_Payload()
+		public SMSG_QUESTGIVER_QUEST_COMPLETE_Payload()
+			: base(NetworkOperationCode.SMSG_QUESTGIVER_QUEST_COMPLETE)
 		{
 
 		}

@@ -21,7 +21,7 @@ namespace FreecraftCore
 			&& !AddressingDetails.RecieverGuid.isType(EntityGuidMask.Player)
 			&& !AddressingDetails.RecieverGuid.isType(EntityGuidMask.Pet);
 
-		[SendSize(SendSizeAttribute.SizeType.Int32)]
+		[SendSize(PrimitiveSizeType.Int32)]
 		[Encoding(EncodingType.ASCII)]
 		[Optional(nameof(HasRecieverName))]
 		[WireMember(3)]

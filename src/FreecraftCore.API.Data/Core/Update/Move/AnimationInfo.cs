@@ -27,7 +27,7 @@ namespace FreecraftCore
 			StartTime = startTime;
 		}
 
-		protected AnimationInfo()
+		public AnimationInfo()
 		{
 			
 		}

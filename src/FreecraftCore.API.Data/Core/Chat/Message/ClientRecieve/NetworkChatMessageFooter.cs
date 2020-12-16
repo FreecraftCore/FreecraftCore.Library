@@ -13,7 +13,7 @@ namespace FreecraftCore
 		/// </summary>
 		[WireMember(1)]
 		[Encoding(EncodingType.ASCII)]
-		[SendSize(SendSizeAttribute.SizeType.Int32)] //WoW sends the size which includes the null terminator; this is likely done for efficiency
+		[SendSize(PrimitiveSizeType.Int32)] //WoW sends the size which includes the null terminator; this is likely done for efficiency
 		public string MessageText { get; internal set; }
 
 		/// <summary>
@@ -30,7 +30,7 @@ namespace FreecraftCore
 			Tag = tag;
 		}
 
-		protected NetworkChatMessageFooter()
+		public NetworkChatMessageFooter()
 		{
 
 		}

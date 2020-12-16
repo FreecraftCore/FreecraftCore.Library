@@ -6,7 +6,7 @@ using FreecraftCore.Serializer;
 namespace FreecraftCore
 {
 	[WireDataContract]
-	public sealed class ObjectUpdateValuesObjectBlock : ObjectUpdateBlock
+	public sealed partial class ObjectUpdateValuesObjectBlock : ObjectUpdateBlock
 	{
 		/// <summary>
 		/// The GUID of the object that should have its values updated.
@@ -33,7 +33,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected ObjectUpdateValuesObjectBlock()
+		public ObjectUpdateValuesObjectBlock()
 		{
 			
 		}

@@ -34,7 +34,7 @@ namespace FreecraftCore
 			RealmID = realmId;
 		}
 
-		protected RealmIdentification()
+		public RealmIdentification()
 		{
 			
 		}

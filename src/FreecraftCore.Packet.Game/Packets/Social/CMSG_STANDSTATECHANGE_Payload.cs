@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Text;
@@ -12,12 +12,13 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_STANDSTATECHANGE)]
-	public sealed class CMSG_STANDSTATECHANGE_Payload : GamePacketPayload
+	public sealed partial class CMSG_STANDSTATECHANGE_Payload : GamePacketPayload
 	{
 		[WireMember(1)]
 		public UnitStandStateType State { get; internal set; }
 
 		public CMSG_STANDSTATECHANGE_Payload(UnitStandStateType state)
+			: this()
 		{
 			if(!Enum.IsDefined(typeof(UnitStandStateType), state)) throw new InvalidEnumArgumentException(nameof(state), (int)state, typeof(UnitStandStateType));
 
@@ -27,7 +28,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal CMSG_STANDSTATECHANGE_Payload()
+		public CMSG_STANDSTATECHANGE_Payload()
+			: base(NetworkOperationCode.CMSG_STANDSTATECHANGE)
 		{
 
 		}

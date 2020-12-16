@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -12,7 +12,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_GAMEOBJ_USE)]
-	public sealed class CMSG_GAMEOBJ_USE_Payload : GamePacketPayload
+	public sealed partial class CMSG_GAMEOBJ_USE_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// The GUID of the GameObject to use.
@@ -21,6 +21,7 @@ namespace FreecraftCore
 		public ObjectGuid Guid { get; internal set; }
 
 		public CMSG_GAMEOBJ_USE_Payload([NotNull] ObjectGuid guid)
+			: this()
 		{
 			if(guid.TypeId != EntityTypeId.TYPEID_GAMEOBJECT)
 				throw new InvalidOperationException($"Cannot send {nameof(NetworkOperationCode.CMSG_GAMEOBJ_USE)} for Non-GameObject Guid: {guid}");
@@ -28,7 +29,8 @@ namespace FreecraftCore
 			Guid = guid ?? throw new ArgumentNullException(nameof(guid));
 		}
 
-		internal CMSG_GAMEOBJ_USE_Payload()
+		public CMSG_GAMEOBJ_USE_Payload()
+			: base(NetworkOperationCode.CMSG_GAMEOBJ_USE)
 		{
 			
 		}

@@ -8,7 +8,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_TUTORIAL_FLAGS)]
-	public sealed class TutorialDataEvent : GamePacketPayload
+	public sealed partial class TutorialDataEvent : GamePacketPayload
 	{
 		public override bool isValid => true;
 
@@ -19,7 +19,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected TutorialDataEvent()
+		public TutorialDataEvent()
+			: base(NetworkOperationCode.SMSG_TUTORIAL_FLAGS)
 		{
 			
 		}

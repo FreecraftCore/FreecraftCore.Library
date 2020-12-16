@@ -12,7 +12,7 @@ namespace FreecraftCore
 	/// </summary>
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_LOGIN_SETTIMESPEED)]
 	[WireDataContract]
-	public sealed class SMSG_LOGIN_SETTIMESPEED_Payload : GamePacketPayload
+	public sealed partial class SMSG_LOGIN_SETTIMESPEED_Payload : GamePacketPayload
 	{
 		//TODO: Implement packed DateTime support.
 		[WireMember(1)]
@@ -30,6 +30,7 @@ namespace FreecraftCore
 
 		/// <inheritdoc />
 		public SMSG_LOGIN_SETTIMESPEED_Payload(uint gameTimeStamp, float gameTickRate)
+			: this()
 		{
 			if (gameTickRate <= 0) throw new ArgumentOutOfRangeException(nameof(gameTickRate));
 
@@ -40,7 +41,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private SMSG_LOGIN_SETTIMESPEED_Payload()
+		public SMSG_LOGIN_SETTIMESPEED_Payload()
+			: base(NetworkOperationCode.SMSG_LOGIN_SETTIMESPEED)
 		{
 			
 		}

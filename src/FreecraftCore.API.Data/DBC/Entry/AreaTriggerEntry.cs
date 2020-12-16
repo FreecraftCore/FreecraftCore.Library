@@ -92,7 +92,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor
 		/// </summary>
-		internal AreaTriggerEntry()
+		public AreaTriggerEntry()
 		{
 
 		}

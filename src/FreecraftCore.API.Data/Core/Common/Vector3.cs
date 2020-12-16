@@ -59,7 +59,7 @@ namespace FreecraftCore
 			Z = z;
 		}
 
-		protected Vector3()
+		public Vector3()
 		{
 
 		}

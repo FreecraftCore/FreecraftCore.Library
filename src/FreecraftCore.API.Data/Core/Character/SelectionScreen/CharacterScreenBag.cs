@@ -27,7 +27,7 @@ namespace FreecraftCore
 			UnknownThree = unknownThree;
 		}
 
-		protected CharacterScreenBag()
+		public CharacterScreenBag()
 		{
 			//serializer ctor
 		}

@@ -13,7 +13,7 @@ namespace FreecraftCore
 		//ClientVersion.RemovedInVersion(ClientVersionBuild.V3_0_2_9056) there was a bool inbetween count and array for HasTransport.
 
 		//We do this because the serializer currently chokes
-		[SendSize(SendSizeAttribute.SizeType.Int32)]
+		[SendSize(PrimitiveSizeType.Int32)]
 		[WireMember(1)]
 		internal ObjectUpdateBlock[] _items;
 
@@ -26,7 +26,7 @@ namespace FreecraftCore
 			_items = items ?? throw new ArgumentNullException(nameof(items));
 		}
 
-		protected UpdateBlockCollection()
+		public UpdateBlockCollection()
 		{
 			
 		}

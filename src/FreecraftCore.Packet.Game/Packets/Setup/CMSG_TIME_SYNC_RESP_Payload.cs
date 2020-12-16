@@ -10,7 +10,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_TIME_SYNC_RESP)]
-	public sealed class CMSG_TIME_SYNC_RESP_Payload : GamePacketPayload
+	public sealed partial class CMSG_TIME_SYNC_RESP_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// Represents the counter/index for which sync request
@@ -28,6 +28,7 @@ namespace FreecraftCore
 		public uint ClientTimestamp { get; internal set; }
 
 		public CMSG_TIME_SYNC_RESP_Payload(int synchronizationCounter, uint clientTimestamp)
+			: this()
 		{
 			if (synchronizationCounter < 0) throw new ArgumentOutOfRangeException(nameof(synchronizationCounter));
 			if (clientTimestamp == 0) throw new ArgumentOutOfRangeException(nameof(clientTimestamp));
@@ -39,7 +40,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		private CMSG_TIME_SYNC_RESP_Payload()
+		public CMSG_TIME_SYNC_RESP_Payload()
+			: base(NetworkOperationCode.CMSG_TIME_SYNC_RESP)
 		{
 
 		}

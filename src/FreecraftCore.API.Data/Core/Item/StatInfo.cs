@@ -26,7 +26,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected StatInfo()
+		public StatInfo()
 		{
 			
 		}

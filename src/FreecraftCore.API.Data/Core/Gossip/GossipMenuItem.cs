@@ -57,7 +57,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal GossipMenuItem()
+		public GossipMenuItem()
 		{
 			
 		}

@@ -12,7 +12,7 @@ namespace FreecraftCore
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.CMSG_NAME_QUERY)]
 	[ProtocolGrouping(ProtocolCode.Game)] //TODO: Change this protocol to something more specific
-	public class CMSG_NAME_QUERY_Payload : GamePacketPayload
+	public partial class CMSG_NAME_QUERY_Payload : GamePacketPayload
 	{
 		/// <inheritdoc />
 		public override bool isValid { get; } = true;
@@ -24,6 +24,7 @@ namespace FreecraftCore
 		public ObjectGuid TargetGuid { get; internal set; }
 
 		public CMSG_NAME_QUERY_Payload([NotNull] ObjectGuid targetGuid)
+			: this()
 		{
 			if (targetGuid == null)
 				throw new ArgumentNullException(nameof(targetGuid));
@@ -31,7 +32,8 @@ namespace FreecraftCore
 			TargetGuid = targetGuid;
 		}
 
-		protected CMSG_NAME_QUERY_Payload()
+		public CMSG_NAME_QUERY_Payload()
+			: base(NetworkOperationCode.CMSG_NAME_QUERY)
 		{
 			//serializer ctor
 		}

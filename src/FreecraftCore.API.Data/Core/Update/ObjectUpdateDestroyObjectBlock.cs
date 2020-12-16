@@ -9,7 +9,7 @@ namespace FreecraftCore
 	/// Block of destroyed object guids.
 	/// </summary>
 	[WireDataContract]
-	public sealed class ObjectUpdateDestroyObjectBlock : ObjectUpdateBlock
+	public sealed partial class ObjectUpdateDestroyObjectBlock : ObjectUpdateBlock
 	{
 		/// <summary>
 		/// Collection of object GUIDS that have been destroyed.
@@ -26,7 +26,7 @@ namespace FreecraftCore
 			DestroyedGuids = destroyedGuids ?? throw new ArgumentNullException(nameof(destroyedGuids));
 		}
 
-		protected ObjectUpdateDestroyObjectBlock()
+		public ObjectUpdateDestroyObjectBlock()
 		{
 
 		}

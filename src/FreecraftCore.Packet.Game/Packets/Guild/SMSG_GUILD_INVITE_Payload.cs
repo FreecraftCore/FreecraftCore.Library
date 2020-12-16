@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_GUILD_INVITE)]
-	public sealed class SMSG_GUILD_INVITE_Payload : GamePacketPayload
+	public sealed partial class SMSG_GUILD_INVITE_Payload : GamePacketPayload
 	{
 		[Encoding(EncodingType.ASCII)]
 		[WireMember(1)]
@@ -22,6 +22,7 @@ namespace FreecraftCore
 		public string GuildName { get; internal set; }
 
 		public SMSG_GUILD_INVITE_Payload([NotNull] string invitingPlayerName, [NotNull] string guildName)
+			: this()
 		{
 			if (string.IsNullOrWhiteSpace(invitingPlayerName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(invitingPlayerName));
 			if (string.IsNullOrWhiteSpace(guildName)) throw new ArgumentException("Value cannot be null or whitespace.", nameof(guildName));
@@ -33,7 +34,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal SMSG_GUILD_INVITE_Payload()
+		public SMSG_GUILD_INVITE_Payload()
+			: base(NetworkOperationCode.SMSG_GUILD_INVITE)
 		{
 
 		}

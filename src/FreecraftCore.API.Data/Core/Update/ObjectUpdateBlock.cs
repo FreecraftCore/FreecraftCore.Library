@@ -15,14 +15,13 @@ namespace FreecraftCore
 	[WireDataContractBaseType((int)ObjectUpdateType.UPDATETYPE_VALUES, typeof(ObjectUpdateValuesObjectBlock))]
 	[WireDataContractBaseType((int)ObjectUpdateType.UPDATETYPE_NEAR_OBJECTS, typeof(ObjectUpdateNearObjectsBlock))]
 	[WireDataContractBaseType((int)ObjectUpdateType.UPDATETYPE_OUT_OF_RANGE_OBJECTS, typeof(ObjectUpdateDestroyObjectBlock))]
-	[WireDataContract(WireDataContractAttribute.KeyType.Byte, InformationHandlingFlags.DontConsumeRead)]
-	public abstract class ObjectUpdateBlock : IUpdateBlockChunk
+	[WireDataContract(PrimitiveSizeType.Byte)]
+	public abstract partial class ObjectUpdateBlock : IUpdateBlockChunk
 	{
 		//This field is set by the serializer.
 		/// <summary>
 		/// The update type of the block.
 		/// </summary>
-		[DontWrite] //we don't want to write because we want the serializer to use the type information instead.
 		[WireMember(1)]
 		public ObjectUpdateType UpdateType { get; internal set; }
 

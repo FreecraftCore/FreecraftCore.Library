@@ -57,7 +57,7 @@ namespace FreecraftCore
 			Class = @class;
 		}
 
-		protected NameQueryResult()
+		public NameQueryResult()
 		{
 			RealmName = "";
 		}

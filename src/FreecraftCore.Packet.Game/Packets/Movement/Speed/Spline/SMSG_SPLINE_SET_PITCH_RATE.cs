@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -13,7 +13,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_SPLINE_SET_PITCH_RATE)]
-	public sealed class SMSG_SPLINE_SET_PITCH_RATE_Payload : GamePacketPayload, IMovementSpeedChangePayload
+	public sealed partial class SMSG_SPLINE_SET_PITCH_RATE_Payload : GamePacketPayload, IMovementSpeedChangePayload
 	{
 
 		/// <inheritdoc />
@@ -31,7 +31,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal SMSG_SPLINE_SET_PITCH_RATE_Payload()
+		public SMSG_SPLINE_SET_PITCH_RATE_Payload()
+			: base(NetworkOperationCode.SMSG_SPLINE_SET_PITCH_RATE)
 		{
 
 		}

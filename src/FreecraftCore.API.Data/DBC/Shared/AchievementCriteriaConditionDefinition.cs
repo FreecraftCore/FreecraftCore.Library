@@ -24,7 +24,7 @@ namespace FreecraftCore
 			AssetId = assetId;
 		}
 
-		protected AchievementCriteriaConditionDefinition()
+		public AchievementCriteriaConditionDefinition()
 		{
 
 		}

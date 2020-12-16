@@ -7,7 +7,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[AuthenticationClientPayload(AuthOperationCode.REALM_LIST)] //TODO: Figure out how to support linking with the limited information.
-	public class AuthRealmListRequest : AuthenticationClientPayload
+	public partial class AuthRealmListRequest : AuthenticationClientPayload
 	{
 		//TODO: Implement
 		public override bool isValid { get; } = true;
@@ -20,6 +20,7 @@ namespace FreecraftCore
 		internal int unknownValue = 0; // hardcoded to zero in public client
 		
 		public AuthRealmListRequest()
+			: base(AuthOperationCode.REALM_LIST)
 		{
 			//Don't need to send anything.
 		}

@@ -15,7 +15,7 @@ namespace FreecraftCore
 		[WireMember(3)]
 		public uint PetFamilyId { get; internal set; }
 
-		protected CharacterScreenPetInfo()
+		public CharacterScreenPetInfo()
 		{
 			//serializer ctor
 		}

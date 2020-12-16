@@ -47,7 +47,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal SpellFailureData()
+		public SpellFailureData()
 		{
 			
 		}

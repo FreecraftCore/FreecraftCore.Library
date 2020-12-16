@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using FreecraftCore.Serializer;
@@ -11,7 +11,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.SMSG_NEW_WORLD)]
-	public sealed class SMSG_NEW_WORLD_Payload : GamePacketPayload
+	public sealed partial class SMSG_NEW_WORLD_Payload : GamePacketPayload
 	{
 		/// <summary>
 		/// The ID of the map to teleport.
@@ -32,6 +32,7 @@ namespace FreecraftCore
 		public float Orientation { get; internal set; }
 
 		public SMSG_NEW_WORLD_Payload(int mapId, [NotNull] Vector3<float> position, float orientation)
+			: this()
 		{
 			//Blizzlike has map ID 0.
 			if(mapId < 0) throw new ArgumentOutOfRangeException(nameof(mapId));
@@ -44,7 +45,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal SMSG_NEW_WORLD_Payload()
+		public SMSG_NEW_WORLD_Payload()
+			: base(NetworkOperationCode.SMSG_NEW_WORLD)
 		{
 
 		}

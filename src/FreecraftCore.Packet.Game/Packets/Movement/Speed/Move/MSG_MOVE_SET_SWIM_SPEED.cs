@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
@@ -13,7 +13,7 @@ namespace FreecraftCore
 	/// </summary>
 	[WireDataContract]
 	[GamePayloadOperationCode(NetworkOperationCode.MSG_MOVE_SET_SWIM_SPEED)]
-	public sealed class MSG_MOVE_SET_SWIM_SPEED_Payload : GamePacketPayload, IMovementSpeedChangeOtherPayload
+	public sealed partial class MSG_MOVE_SET_SWIM_SPEED_Payload : GamePacketPayload, IMovementSpeedChangeOtherPayload
 	{
 		/// <inheritdoc />
 		[WireMember(1)]
@@ -35,7 +35,8 @@ namespace FreecraftCore
 		/// <summary>
 		/// Default Serializer Ctor.
 		/// </summary>
-		internal MSG_MOVE_SET_SWIM_SPEED_Payload()
+		public MSG_MOVE_SET_SWIM_SPEED_Payload()
+			: base(NetworkOperationCode.MSG_MOVE_SET_SWIM_SPEED)
 		{
 
 		}

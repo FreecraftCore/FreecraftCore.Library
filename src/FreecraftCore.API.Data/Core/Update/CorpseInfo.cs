@@ -55,7 +55,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal CorpseInfo()
+		public CorpseInfo()
 		{
 			
 		}

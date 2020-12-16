@@ -25,7 +25,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected StringDBCReference()
+		public StringDBCReference()
 		{
 			
 		}

@@ -7,7 +7,7 @@ using JetBrains.Annotations;
 namespace FreecraftCore
 {
 	[WireDataContract]
-	public sealed class PlayerAfkChatMessage : PlayerChatMessage
+	public sealed partial class PlayerAfkChatMessage : PlayerChatMessage
 	{
 		[WireMember(1)]
 		public string Message { get; internal set; }
@@ -27,7 +27,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal PlayerAfkChatMessage()
+		public PlayerAfkChatMessage()
 		{
 			
 		}

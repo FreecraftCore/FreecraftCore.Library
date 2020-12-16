@@ -70,7 +70,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal AuraUpdateData()
+		public AuraUpdateData()
 		{
 			
 		}

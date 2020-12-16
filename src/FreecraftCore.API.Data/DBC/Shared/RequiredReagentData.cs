@@ -31,7 +31,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		protected RequiredReagentData()
+		public RequiredReagentData()
 		{
 			
 		}

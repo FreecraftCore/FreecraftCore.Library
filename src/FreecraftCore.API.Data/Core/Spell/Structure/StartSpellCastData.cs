@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using FreecraftCore.Serializer;
 
 namespace FreecraftCore
 {
+	[WireDataContract]
 	public sealed class StartSpellCastData : SpellCastData
 	{
 		public override bool HasHitInformation => false;
@@ -17,7 +19,7 @@ namespace FreecraftCore
 		/// <summary>
 		/// Serializer ctor.
 		/// </summary>
-		internal StartSpellCastData()
+		public StartSpellCastData()
 		{
 			
 		}

@@ -40,7 +40,7 @@ namespace FreecraftCore
 			UnkFlags = unkFlags;
 		}
 
-		protected NetworkChatMessageHeader()
+		public NetworkChatMessageHeader()
 		{
 			
 		}

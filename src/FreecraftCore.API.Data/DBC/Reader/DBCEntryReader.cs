@@ -19,7 +19,7 @@ namespace FreecraftCore
 	/// </summary>
 	/// <typeparam name="TDBCEntryType">The entry type.</typeparam>
 	public sealed class DBCEntryReader<TDBCEntryType> : DbcReaderBase, IDbcEntryReader<TDBCEntryType>
-		where TDBCEntryType : IDBCEntryIdentifiable
+		where TDBCEntryType : IDBCEntryIdentifiable, ITypeSerializerReadingStrategy<TDBCEntryType>
 	{
 		/// <summary>
 		/// The serializer
@@ -58,18 +58,17 @@ namespace FreecraftCore
 			//Guessing the size here, no way to know.
 			Dictionary<int, TDBCEntryType> entryMap = new Dictionary<int, TDBCEntryType>(header.RecordsCount);
 
+			int offset = 0;
 			byte[] bytes = new byte[header.RecordSize * header.RecordsCount];
 
 			//Lock for safety, we don't want anyone else accessing the stream while we read it.
 			await ReadBytesIntoArrayFromStream(bytes);
 
-			DefaultStreamReaderStrategy reader = new DefaultStreamReaderStrategy(bytes);
-
 			for(int i = 0; i < header.RecordsCount; i++)
 			{
 				try
 				{
-					TDBCEntryType entry = Serializer.Deserialize<TDBCEntryType>(reader);
+					TDBCEntryType entry = Serializer.Read<TDBCEntryType>(new Span<byte>(bytes), ref offset);
 					entryMap.Add((int)entry.EntryId, entry);
 				}
 				catch(Exception e)
